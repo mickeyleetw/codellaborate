@@ -22,7 +22,7 @@ router.post('/test', async (req, res) => {
     }
 
     try {
-        let runresult = await runchildprocess(childProcess, 5000, 10, './temp/test.js');
+        let runresult = await runchildprocess(childProcess, 5000, 10, '../temp/test.js');
         let returnresult={
             "Result":runresult
         }
@@ -41,7 +41,7 @@ router.post('/test', async (req, res) => {
 // -------------------------------------------------------------------------
 function writeFile(code) {
     return new Promise((resolve,rejects)=>{
-        fs.writeFile('./temp/test.js', code, function (err) {
+        fs.writeFile('../temp/test.js', code, function (err) {
             if (err) {rejects(err); }
             else {resolve('Write operation complete.') }
         });
