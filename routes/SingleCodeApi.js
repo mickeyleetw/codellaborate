@@ -53,17 +53,16 @@ function writeFile(code) {
 function runchildprocess(childProcess, timeLimit, memoryLimit, file) {
     return new Promise((resolve, rejects) => {
         let child = childProcess.spawn('node', [`--max-old-space-size=${memoryLimit}`, `${file}`]);
+        TimeOutKillCProcess(child, timeLimit);
 
-        //Run Code and OutPut Resulttry
-        child.stdout.on('data', (data) => {
-            let result=data.toString();
-            // console.log(`Result:${data}`);
-            TimeOutKillCProcess(child, timeLimit);
-            resolve(result);
-        });
+        // //Run Code and OutPut Resulttry
+        // child.stdout.on('data', (data) => {
+        //     let result=data.toString();
+        //     // console.log(`Result:${data}`);
+        //     TimeOutKillCProcess(child, timeLimit);
+        //     resolve(result);
+        // });
 
-        //set flag
-        let kill = false;
         //Kill Process when memory exceed limit
         child.stderr.on("data", (err) => {
             let errM = err.toString().split('\r')[0];
