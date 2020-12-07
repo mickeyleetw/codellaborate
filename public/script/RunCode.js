@@ -13,7 +13,7 @@ function checkStatus(response) {
 function runcode() {
     const code = document.getElementById('code').value;
     
-    fetch('/admin/test', {
+    fetch('/runcode', {
         method: 'POST',
         headers: {
             'Content-Type': 'text/plain',

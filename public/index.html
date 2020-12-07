@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>NewCode</title>
+</head>
+
+<body>
+    <div class="fluid">
+        <div class="title">
+            <h1>New Code</h1>
+        </div>
+        <div class="col-md-6">
+            <div class="well video-space" id="video-space">
+                <textarea class="code" type="text" id="code" name="code"></textarea>
+                <!-- <textarea id="notes_textarea"></textarea> -->
+                <button type="submit" id="button">RunCode</button>
+            </div>
+        </div>
+        <h2>Running Result:</h2>
+        
+        <div class='output'>
+        </div>
+
+
+    </div>
+    <script src="/script/notes.js"></script>
+    <script src="/script/RunCode.js"></script>
+</body>
+
+</html>
