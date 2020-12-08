@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/runcode', async (req, res) => {
-    // console.log('QQ');
+12.
     let code = req.body;
 
     try {
@@ -23,14 +23,11 @@ router.post('/runcode', async (req, res) => {
 
     try {
         let runresult = await runChildProcess(childProcess, 2000, 10, '../temp/test.js');
-        let returnresult={
-            "Result":runresult
-        }
-        res.send(returnresult);
+        res.send({Result: runresult});
     } catch (err) {
         let errmessage=err.toString().split('\r')[0];
         let returnerr={
-            "Result":errmessage
+            "Result":errmessage+"!!!!"
         }
         // console.log(`Error Message:${err}`);
         res.send(returnerr);
@@ -73,9 +70,10 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
             
             output += data;
         });
-        workerProcess.stderr.on("data", (data) => {
-            errM = data.toString().split('\r')[0];
-            resolve(errM);
+        workerProcess.stderr.on("data", () => {
+            err=`This code out of memory of ${memoryLimit} mb`
+            // err = data.toString().split('\r')[0];
+            resolve(err);
         });
         workerProcess.stdout.on("end", () => {
             console.log(`This is exit resolve code: ${workerProcess.exitCode}`)
@@ -88,3 +86,4 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
 
 
 module.exports = router;
+
