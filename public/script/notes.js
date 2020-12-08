@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     //text area content
-jquery    let notes_textarea = $('#code');
+    let notes_textarea = $('#code');
     // let notes_textarea = document.getElementById('code');
     let socket = io.connect();
 
