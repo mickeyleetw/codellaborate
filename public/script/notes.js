@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     notes_textarea.addEventListener('keyup', () => {
-        // socket.emit("notes_content", { notes: notes_textarea.value })
+        socket.emit("notes_content", { notes: notes_textarea.value })
     });
 
     socket.on('notes_content', (data) => {
