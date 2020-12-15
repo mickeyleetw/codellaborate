@@ -1,4 +1,5 @@
 body {
+  background-image: url("../img/mainImg.jpg");
   padding-top: 56px;
 }
 
@@ -12,22 +13,6 @@ body {
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
-
-.carousel-item {
-  height: 100vh;
-  min-height: 1000px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.portfolio-item {
-  margin-bottom: 30px;
-}
-
-
 
 .remote-caret {
     position: relative;
