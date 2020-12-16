@@ -105,36 +105,23 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-env browser */
 
 // @ts-ignore
-
-// function getRandomColor() {
-//   var letters = '0123456789ABCDEF'.split('');
-//   var color = '#';
-//   for (var i = 0; i < 6; i++ ) {
-//       color += letters[Math.floor(Math.random() * 16)];
-//   }
-//   return color.toLowerCase;
-// }
-
 let urlcurrent = (new URL(document.location))
 console.log(urlcurrent);
 let editorId=urlcurrent.searchParams.get('id');
 console.log(editorId)
 
+// function getRandomColor() {
+//   var letters = '0123456789ABCDEF';
+//   var color = '#';
+//   for (var i = 0; i < 6; i++ ) {
+//       color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
+
 
 
 window.addEventListener('load', () => {
-
-//   function getRandomColor() {
-//     var letters = '0123456789ABCDEF';
-//     var color = '#';
-//     for (var i = 0; i < 6; i++ ) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
-  
-  const roomID = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3)).toString();
-  console.log(roomID);
   const ydoc = new yjs__WEBPACK_IMPORTED_MODULE_1__["Doc"]()
   const provider = new y_websocket__WEBPACK_IMPORTED_MODULE_2__["WebsocketProvider"](
     `ws://${urlcurrent.origin}`,
@@ -158,25 +145,27 @@ window.addEventListener('load', () => {
 
   const binding = new y_codemirror__WEBPACK_IMPORTED_MODULE_3__["CodemirrorBinding"](yText, editor, provider.awareness);
 
-  // const connectBtn = /** @type {HTMLElement} */ (document.getElementById('y-connect-btn'))
-  // connectBtn.addEventListener('click', () => {
-  //   if (provider.shouldConnect) {
-  //     provider.disconnect()
-  //     connectBtn.textContent = 'Connect'
-  //   } else {
-  //     provider.connect()
-  //     connectBtn.textContent = 'Disconnect'
-  //   }
-  // })
+  const connectBtn = /** @type {HTMLElement} */ (document.getElementById('y-connect-btn'))
+  connectBtn.addEventListener('click', () => {
+    if (provider.shouldConnect) {
+      provider.disconnect()
+      connectBtn.textContent = 'Connect'
+    } else {
+      provider.connect()
+      connectBtn.textContent = 'Disconnect'
+    }
+  })
 
   // @ts-ignore
   window.example = { provider, ydoc, yText, binding, Y: yjs__WEBPACK_IMPORTED_MODULE_1__ }
+  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name: roomID })
+})
 })
 
 
 /***/ }),
 
-/***/ "./node_modules/base64-js/index.js":
+/***/ "./node_modules/base64-js/index.js"
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
   \*****************************************/
@@ -338,7 +327,7 @@ function fromByteArray (uint8) {
 
 /***/ }),
 
-/***/ "./node_modules/buffer/index.js":
+/***/ "./node_modules/buffer/index.js"
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
   \**************************************/
@@ -2156,7 +2145,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "./node_modules/codemirror/lib/codemirror.js":
+/***/ "./node_modules/codemirror/lib/codemirror.js"
 /*!***************************************************!*\
   !*** ./node_modules/codemirror/lib/codemirror.js ***!
   \***************************************************/
@@ -18207,7 +18196,7 @@ const updateRemoteSelection = (y, cm, type, cursors, clientId, awareness) => {
   }
   const user = aw.user || {}
   if (user.color == null) {
-    user.color = '#ffa500';
+    user.color = '#ffa500'
   }
   if (user.name == null) {
     user.name = `User: ${clientId}`

@@ -29,8 +29,8 @@ function signup() {
         body: JSON.stringify(userData)
     }).then((response) => {
         // let data = await response.json();
-        // console.log(data);
-        // console.log(response);
+        console.log(data);
+        console.log(response);
         return response.json();
     }).then(json => {
         const token = json.data.access_token;

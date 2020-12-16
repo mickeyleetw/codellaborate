@@ -51,7 +51,6 @@ router.post('/signup', async (req, res) => {
                         provider: resultu.provider,
                         name: resultu.name,
                         email: resultu.email,
-                        picture: resultu.picture,
                     }
                 }
             }
@@ -59,7 +58,7 @@ router.post('/signup', async (req, res) => {
             console.log(results);
             res.json(results);
         } else {
-            res.status(403).send('User Exits')
+            res.status(403).send('Email Exits')
         }
     }
 })

@@ -45,7 +45,7 @@ function sqlquery(str, sqlObj) {
 }
 
 async function dropTables() {
-    sql = 'DROP TABLE IF EXISTS `users`;';
+    sql = 'DROP TABLE IF EXISTS `users`,`editor`;';
     await sqlquery(sql);
 };
 

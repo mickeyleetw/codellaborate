@@ -5,36 +5,48 @@ const childProcess = require('child_process')
 const functions = require('../../util/functions');
 const router = express.Router();
 
-// // --------------------create New Editor----------------------------------------------
-// router.post('/', async (req, res) => {
-//     let editorId = Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3);
-//     let editorURL = `editor?id=${editorId}`
-//     const sqlu = 'INSERT INTO editor SET ?';
-//     await functions.sqlquery(sqlu, editorId);
-//     let result={id:editorId,url:editorURL}
-//     res.json(result);
-// })
+// --------------------create New Editor----------------------------------------------
+router.post('/', async (req, res) => {
+    let editorId = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3));
+    console.log(editorId)
+    let editorURL = `editor?id=${editorId}`
+    console.log(editorURL);
+    const sqlu = `INSERT INTO editor SET editorID=?;`
+    let sqlresult = await functions.sqlquery(sqlu, editorId);
+    let result = { id: editorId, url: editorURL }
+    return res.json(result);
+})
 
-// // --------------------驗證 Editor----------------------------------------------
-// router.post('/editor?id=', async (req, res) => {
-//     const id = req.query.id;
-//     let urlcurrent = (new URL(document.location)).searchParams;
-//     let editorId = urlcurrent.get(id);
+// --------------------驗證 Editor----------------------------------------------
+router.get('/check', async (req, res) => {
+    const editorId = req.query.id;
+    // console.log(editorId)
+    // let urlcurrent = (new URL(document.location)).searchParams;
+    // let editorId = urlcurrent.get(id);
 
-//     const sqlu = 'SELECT * FROM editor where editorID=?';
-//     let result=(await functions.sqlquery(sqlu, editorId));
-//     if(result.length>0){
-//         res.redirect()
-
-//     }
-//     res.json(result);
-// })
+    const sqlu = 'SELECT * FROM editor where editorID=?';
+    let result = (await functions.sqlquery(sqlu, editorId));
+    if (result.length > 0) {
+        console.log(editorId)
+        return res.json(editorId);
+        // return res.redirect(`/editor?id=${editorId}`)
+    } else {
+        res.redirect('/')
+    }
+})
+// --------------------Render Editor----------------------------------------------
+router.get('/', (req, res) => {
+    // const editorId = req.query.id;
+    // return res.json(editorId);
+    // console.log('QQ')
+    res.render('neweditor')
+})
 
 // --------------------runCodeApi-----------------------------------------------------
-router.post('/runcode', async (req, res) => {
+router.post('/editor/runcode', async (req, res) => {
     // console.log('QQ');
     // let oldcode = req.body;
-    let code = he.decode(req.body);
+    let code = req.body;
     console.log(code);
 
     try {
@@ -47,7 +59,7 @@ router.post('/runcode', async (req, res) => {
     }
 
     try {
-        let runresult = await runChildProcess(childProcess, 2000, 10, '../temp/test.js');
+        let runresult = await runChildProcess(childProcess, 5000, 10, '../temp/test.js');
         let returnresult = {
             "Result": runresult
         }
