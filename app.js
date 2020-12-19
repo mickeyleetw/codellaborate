@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
+const fs = require('fs');
 const io = require('socket.io')(http);
 const bodyParser = require('body-parser'); 
 const fetch = require('node-fetch');
@@ -9,22 +10,6 @@ const functions = require('./util/functions');
 const ejs = require('ejs');
 
 functions.connectDB();
-// let notes='';
-// let notes_taken = 0;
-
-// // event-handler for new incoming connections
-// io.on('connection', (socket)=>{
-
-//     socket.emit('startup', { notes: notes, notes_taken: notes_taken });
-
-//     socket.on('notes_content', (data)=>{
-//         notes = data.notes;
-//         io.emit('notes_content', data);
-//     })
-
-// });
-
-
 
 const editorRoutes=require("./server/routes/editorApi");
 const usergRoutes=require("./server/routes/userApi");
@@ -40,16 +25,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 
+//Setup Router
 app.use("/editor",editorRoutes);
 app.use("/user",usergRoutes);
 app.use("/admin",admingRoutes);
 
-// app.get('/', (req, res) => {
-//     res.redirect('../public/index.html');
-// });
-
-
-
+// Setup Error
 app.use((req, res, next) => {
     const err = new Error("Not Found");
     err.status = 400;
@@ -61,8 +42,9 @@ app.use((err, req, res, next) => {
     res.send('Error message')
 });
 
-const port = 3000;
 
+// Setup Port
+const port = 3000;
 http.listen(port, () => {
     console.log(`Server on port ${port} is ready!`);
 })

@@ -24,8 +24,10 @@ function signin() {
         body: JSON.stringify(user)
     }).then(checkStatus)
     .then(json => {
-        const token = json.data.access_token;
+        const token = json.data.access_token; 
+        const name=json.data.user.name;
         localStorage.setItem('access_token', token);
+        localStorage.setItem('username', name);
         window.location.href = "./index.html";
     }).catch(error => {
         console.log('Fetch Error: ', error);

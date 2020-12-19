@@ -9,7 +9,7 @@ function checkStatus(response) {
         return Promise.reject(new Error(response.statusText));
     }
 }
-// -------------------------------------------------------------------------
+// -----------------------------Runnig Code--------------------------------------------
 function runcode() {
     // const code = document.getElementsByClassName('CodeMirror cm-s-monokai')[0].value;
     // let code=editor.value;
@@ -39,7 +39,7 @@ function runcode() {
             console.log('Fetch Error: ', error.message);
         })
 }
-// -------------------------------------------------------------------------
+// -----------------------------Get Code--------------------------------------------
 function getCode() {
     let codecontent = document.getElementsByClassName('CodeMirror-line');
     let num = codecontent.length;

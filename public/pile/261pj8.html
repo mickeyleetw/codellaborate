@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
-  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html" ;="" charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
   <script src="socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="./dist/codemirror.bundle.js" async></script>
-  <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
+  <script type="text/javascript" src="./dist/codemirror.bundle.js" async=""></script>
+  <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css" async="" defer="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
 
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -40,23 +37,22 @@
   </nav>
   <!-- Page Content -->
   <div class="container">
+
     <!-- Jumbotron Header -->
-    
     <header class="jumbotron my-4">
       <button type="submit" id="button">RunCode</button>
       <button type="button" id="y-connect-btn">Disconnect</button>
       <label for="filename">Title</label>
       <input type="text" id="filename">
-      <textarea id="editor" style="display: none;"></textarea>
+      <textarea id="editor" style="display: none;"></textarea><div class="CodeMirror cm-s-monokai"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 23.3333px; left: 68.7396px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -17px; border-right-width: 33px; min-height: 47px; min-width: 114.219px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style="visibility: hidden;"><div class="CodeMirror-cursor" style="left: 39.7396px; top: 19.3333px; height: 19.3333px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">sgdfgthfdbdftfd</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -29px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">dfgdd</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 47px;"></div><div class="CodeMirror-gutters" style="height: 80px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
       <!-- <h1 class="display-3">A Warm Welcome!</h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
       <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
       <button type="button" id="save-btn">Save This Editor</button>
     </header>
-    
     <div class="code-sharing">
-      <span class="link-to-share ng-binding">Link to share pile:</span>
-      <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="">
+      <span class="link-to-share ng-binding">Link to share:</span>
+      <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="" value="http://localhost:3000/editor?id=261pj8">
       <span class="label no-padding clip-copy"></span>
     </div>
 
@@ -133,7 +129,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">Copyright © Your Website 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -142,6 +138,6 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-</body>
 
-</html>
+
+</body></html>

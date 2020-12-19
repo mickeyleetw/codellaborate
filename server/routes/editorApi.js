@@ -1,6 +1,7 @@
 const fs = require('fs');
-const he = require('he');
+const url = require('url');
 const express = require('express');
+const moment = require('moment');
 const childProcess = require('child_process')
 const functions = require('../../util/functions');
 const router = express.Router();
@@ -20,10 +21,6 @@ router.post('/', async (req, res) => {
 // --------------------驗證 Editor----------------------------------------------
 router.get('/check', async (req, res) => {
     const editorId = req.query.id;
-    // console.log(editorId)
-    // let urlcurrent = (new URL(document.location)).searchParams;
-    // let editorId = urlcurrent.get(id);
-
     const sqlu = 'SELECT * FROM editor where editorID=?';
     let result = (await functions.sqlquery(sqlu, editorId));
     if (result.length > 0) {
@@ -36,21 +33,18 @@ router.get('/check', async (req, res) => {
 })
 // --------------------Render Editor----------------------------------------------
 router.get('/', (req, res) => {
-    // const editorId = req.query.id;
-    // return res.json(editorId);
-    // console.log('QQ')
     res.render('neweditor')
 })
 
-// --------------------runCodeApi-----------------------------------------------------
-router.post('/editor/runcode', async (req, res) => {
+// --------------------Run Code-----------------------------------------------------
+router.post('/runcode', async (req, res) => {
     // console.log('QQ');
     // let oldcode = req.body;
     let code = req.body;
     console.log(code);
 
     try {
-        let resultFile = await writeFile(code);
+        let resultFile = await writeCODE(code);
         console.log(resultFile);
         // res.json(resultS);
     } catch (err) {
@@ -75,16 +69,80 @@ router.post('/editor/runcode', async (req, res) => {
     }
 })
 
-// -------------------------------------------------------------------------
-function writeFile(code) {
+// --------------------Save Current Editor-----------------------------------------------------
+router.post('/saveEditor', async (req, res) => {
+    const userID = req.body.user;
+    const currentHTML = req.body.html;
+    const editorID = (url.parse(req.body.fileURL, true)).query.id
+    const title = req.body.filename;
+    const currentTime = GetTime();
+    // console.log(editorID);
+
+    try {
+        let resultFile = await writeHTML(currentHTML, editorID);
+        console.log(resultFile);
+    } catch (err) {
+        console.log(err);
+    }
+    // userEditor Arr
+    const userEditor = {
+        'userID': userID,
+        'title': title,
+        'saveTime': currentTime,
+        'fileID': `${editorID}`
+    };
+
+    const chkfileID = 'SELECT fileID FROM userFile where fileID=?;'
+    let searchresult = await functions.sqlquery(chkfileID, editorID);
+    if (searchresult.length != 0) {
+        const sqluserPile = `UPDATE userFile SET title=?,saveTime = ? where fileID = ?`;
+        let saveResult = await functions.sqlquery(sqluserPile, [title, currentTime, editorID]);
+    }
+    else {
+        const sqluserPile = 'INSERT INTO `userFile` SET ?';
+        let saveResult = await functions.sqlquery(sqluserPile, userEditor);
+    }
+
+    res.send('OK')
+})
+// --------------------Reload saved Editor-----------------------------------------------------
+router.post('/usereditor', async (req, res) => {
+    const editorID = req.body.editorID;
+    const userID = req.body.userID;
+    console.log(editorID);
+    console.log(userID);
+
+    const chkfileExist = 'SELECT * FROM userFile where userID=? AND fileID=?;'
+    let searchresult = await functions.sqlquery(chkfileExist, [userID,editorID]);
+    console.log(searchresult)
+    if (searchresult.length != 0) {
+        return res.json(editorID);
+        // res.status(200);
+    }
+    else {
+        return res.json('YOU DO NOT HAVE THIS EDITOR!!')
+    }
+
+})
+
+// -------------------------Write HTML File------------------------------------------------
+function writeHTML(html, id) {
     return new Promise((resolve, rejects) => {
-        fs.writeFile('../temp/test.js', code, function (err) {
+        fs.writeFile(`./public/pile/${id}.html`, html, function (err) {
             if (err) { rejects(err); }
             else { resolve('Write operation complete.') }
         });
     })
 }
-
+// -------------------------Write CODE File------------------------------------------------
+function writeCODE(code) {
+    return new Promise((resolve, rejects) => {
+        fs.writeFile('../temp/CODE.js', code, function (err) {
+            if (err) { rejects(err); }
+            else { resolve('Write operation complete.') }
+        });
+    })
+}
 
 // -------------------------------------------------------------------------
 function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
@@ -122,6 +180,23 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
             resolve(output);
         });
     });
+}
+
+// -------------------------------------------------------------------------
+function GetTime() {
+    const timestamp = moment().format();
+    const currentTime = moment(timestamp).format('YYYY-MM-DDTHH:mm:ss.SSS');
+    return currentTime;
+}
+// -------------------------------------------------------------------------
+function GetToken() {
+    const authorization = req.get('authorization');
+    if (authorization) {
+        const token = authorization.split(' ')[1];
+        return token;
+    } else {
+        res.status(400).send('No access token.')
+    }
 }
 
 // -------------------------------------------------------------------------

@@ -56,24 +56,22 @@ router.post('/signup', async (req, res) => {
             }
             console.log("OKOK");
             console.log(results);
-            res.json(results);
+            return res.json(results);
         } else {
-            res.status(403).send('Email Exits')
+            return res.status(403).send('Email Exits')
         }
     }
 })
 
 // -------------------------------------------------------------------------
-
 router.post('/signin', async (req, res) => {
-
     function validation() {
         const contentType = req.get('Content-Type');
         //application/json can only be used from postman,from signUp.html may accept application/pplication/x-www-form-urlencoded
         if (contentType === 'application/json') {
             if (req.body.provider == 'native' && req.body.email && req.body.password) {
                 return 'native';
-            }else {
+            } else {
                 res.status(400).send('Insufficient Request fields')
             }
         } else {
@@ -142,7 +140,7 @@ router.get('/profile', async (req, res) => {
         const resultp = {
             data: {
                 id: userp.id,
-                provider: userp.provider,
+                token: userp.token,
                 name: userp.name,
                 email: userp.email,
             }
@@ -152,13 +150,32 @@ router.get('/profile', async (req, res) => {
         return res.status(403).send('Invalid access.');
     }
 })
-
+// -------------------------------------------------------------------------
+router.post('/userFile', async (req, res) => {
+    const token = req.body.token;
+    let sql = "SELECT id FROM users WHERE token = ?;"
+    const userID = (await functions.sqlquery(sql, token))[0].id;
+    let sqluf = "SELECT * FROM userFile WHERE userID = ?;"
+    const result = (await functions.sqlquery(sqluf, userID));
+    let fileArr=[];
+    for(let numfile=0;numfile<result.length;numfile++){
+        let filetmp={
+            "title":result[numfile].title,
+            "saveTime":result[numfile].saveTime,
+            "fileID":result[numfile].fileID
+        }
+        fileArr.push(filetmp);
+    }
+    // console.log(res.json(fileArr));
+    return res.json(fileArr);
+})
 // -------------------------------------------------------------------------
 
 function hashPassword(password, salt) {
     return crypto.createHmac('sha256', salt).update(password).digest('hex');
 }
 
+// -------------------------------------------------------------------------
 function GetTokenExpiry() {
     const token = crypto.randomBytes(20).toString('hex');
     const expiry = Date.now() + 36000000; // 1 hour

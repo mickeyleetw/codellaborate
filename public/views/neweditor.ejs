@@ -45,11 +45,19 @@
     <header class="jumbotron my-4">
       <button type="submit" id="button">RunCode</button>
       <button type="button" id="y-connect-btn">Disconnect</button>
+      <label for="filename">Title</label>
+      <input type="text" id="filename">
       <textarea id="editor" style="display: none;"></textarea>
       <!-- <h1 class="display-3">A Warm Welcome!</h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
       <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
+      <button type="button" id="save-btn">Save This Editor</button>
     </header>
+    <div class="code-sharing">
+      <span class="link-to-share ng-binding">Link to share:</span>
+      <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="">
+      <span class="label no-padding clip-copy"></span>
+    </div>
 
     <!-- Page Features -->
     <div class="row text-center">
@@ -120,6 +128,7 @@
         <div class='output'></div>
     </div> -->
   <script src="/script/RunCode.js"></script>
+  <script src="/script/SaveEditor.js"></script>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

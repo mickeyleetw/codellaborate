@@ -105,39 +105,73 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-env browser */
 
 // @ts-ignore
+//create RandomColor for cursor
 
-// function getRandomColor() {
-//   var letters = '0123456789ABCDEF'.split('');
-//   var color = '#';
-//   for (var i = 0; i < 6; i++ ) {
-//       color += letters[Math.floor(Math.random() * 16)];
-//   }
-//   return color.toLowerCase;
-// }
 
-let urlcurrent = (new URL(document.location))
-console.log(urlcurrent);
+// get DomainName and roomID
+let urlcurrent = (new URL(document.location));
+// console.log(urlcurrent);
 let editorId=urlcurrent.searchParams.get('id');
-console.log(editorId)
+// console.log(editorId);
+
 
 
 
 window.addEventListener('load', () => {
 
-//   function getRandomColor() {
-//     var letters = '0123456789ABCDEF';
-//     var color = '#';
-//     for (var i = 0; i < 6; i++ ) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
   
-  const roomID = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3)).toString();
-  console.log(roomID);
+
+  function getUsername(){
+    let name=(Math.random().toString(36).substr(2, 7)).toString();
+    let username='';
+    if(localStorage.getItem('username')){
+      username=localStorage.getItem('username');
+    }else{
+      username=name;
+    }
+    console.log(username)
+    return username;
+
+};
+
+
+//   const token = localStorage.getItem('access_token');
+//   if (token) {
+//       const res=await fetch('user/profile', {
+//           method: 'GET',
+//           headers: {
+//               'Authorization': `Bearer ${token}`
+//           }
+//       });
+//       console.log(res);
+//       const res2= await checkStatus(res);
+//       console.log(res2);
+//       name=res2.data.name;
+//   }
+//   console.log(name)
+//   return name;
+// }
+// const DN=`${urlcurrent.host}${urlcurrent.pathname}?id`
+
+// let username;
+// (async () =>{
+//   username=await checkAccessToken();
+//   console.log(username+'QQ');
+// })()
+
+
   const ydoc = new yjs__WEBPACK_IMPORTED_MODULE_1__["Doc"]()
   const provider = new y_websocket__WEBPACK_IMPORTED_MODULE_2__["WebsocketProvider"](
-    `ws://${urlcurrent.origin}`,
+    // `ws://${DN}`,
+    'wss://demos.yjs.dev',
     editorId,
     ydoc
   )
@@ -171,6 +205,9 @@ window.addEventListener('load', () => {
 
   // @ts-ignore
   window.example = { provider, ydoc, yText, binding, Y: yjs__WEBPACK_IMPORTED_MODULE_1__ }
+  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name:getUsername() })
+  const shareLink = document.getElementById('code-sharing');
+  shareLink.setAttribute('value',document.location.href);
 })
 
 

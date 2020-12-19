@@ -45,6 +45,8 @@ function sqlquery(str, sqlObj) {
 }
 
 async function dropTables() {
+    sql = 'DROP TABLE IF EXISTS `userFile`;';
+    await sqlquery(sql);
     sql = 'DROP TABLE IF EXISTS `users`,`editor`;';
     await sqlquery(sql);
 };
@@ -66,8 +68,21 @@ async function createAllTables() {
 
     sql = 'CREATE TABLE IF NOT EXISTS `editor`(\
         id int AUTO_INCREMENT,\
-        editorID VARCHAR(255),\
+        editorID VARCHAR(255) unique NOT NULL,\
         PRIMARY KEY(id)\
+        )';
+
+    await sqlquery(sql);
+
+    sql = 'CREATE TABLE IF NOT EXISTS `userFile`(\
+        id int AUTO_INCREMENT,\
+        userID int NOT NULL,\
+        title VARCHAR(255),\
+        saveTime VARCHAR(255),\
+        fileID VARCHAR(255) NOT NULL,\
+        PRIMARY KEY(id),\
+        FOREIGN KEY(userID) REFERENCES `users`(id),\
+        FOREIGN KEY(fileID) REFERENCES `editor`(editorID)\
         )';
 
     await sqlquery(sql);
