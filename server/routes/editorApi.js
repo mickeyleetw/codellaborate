@@ -6,36 +6,39 @@ const childProcess = require('child_process')
 const functions = require('../../util/functions');
 const router = express.Router();
 
-// --------------------create New Editor----------------------------------------------
+// --------------------Create New Editor----------------------------------------------
 router.post('/', async (req, res) => {
-    let editorId = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3));
-    console.log(editorId)
+    let chk = false;
+    let editorId;
+    //check if editor ID exist or not
+    while (!chk) {
+        editorId = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3));
+        const chkeditor = `SELECT * FROM editor WHERE editorID=?;`
+        let chkesult = await functions.sqlquery(chkeditor, editorId);
+        if (chkesult.length == 0) { break; }
+        else { continue; }
+    }
+    // console.log(editorId)
     let editorURL = `editor?id=${editorId}`
-    console.log(editorURL);
+    // console.log(editorURL);
     const sqlu = `INSERT INTO editor SET editorID=?;`
     let sqlresult = await functions.sqlquery(sqlu, editorId);
     let result = { id: editorId, url: editorURL }
     return res.json(result);
 })
-
 // --------------------驗證 Editor----------------------------------------------
-router.get('/check', async (req, res) => {
-    const editorId = req.query.id;
+router.get('/:id', async (req, res) => {
+    const editorId = req.params.id;
     const sqlu = 'SELECT * FROM editor where editorID=?';
     let result = (await functions.sqlquery(sqlu, editorId));
+    console.log(result);
     if (result.length > 0) {
-        console.log(editorId)
-        return res.json(editorId);
-        // return res.redirect(`/editor?id=${editorId}`)
+        res.render('neweditor');
     } else {
-        res.redirect('/')
+        res.render('404')
+        // res.send('EDITOR NOT EXIST!')
     }
 })
-// --------------------Render Editor----------------------------------------------
-router.get('/', (req, res) => {
-    res.render('neweditor')
-})
-
 // --------------------Run Code-----------------------------------------------------
 router.post('/runcode', async (req, res) => {
     // console.log('QQ');
@@ -53,7 +56,7 @@ router.post('/runcode', async (req, res) => {
     }
 
     try {
-        let runresult = await runChildProcess(childProcess, 5000, 10, '../temp/test.js');
+        let runresult = await runChildProcess(childProcess, 5000, 10, '../temp/code.js');
         let returnresult = {
             "Result": runresult
         }
@@ -73,10 +76,10 @@ router.post('/runcode', async (req, res) => {
 router.post('/saveEditor', async (req, res) => {
     const userID = req.body.user;
     const currentHTML = req.body.html;
-    const editorID = (url.parse(req.body.fileURL, true)).query.id
+    const editorID = (url.parse(req.body.fileURL, true)).pathname.split('/')[2];
     const title = req.body.filename;
     const currentTime = GetTime();
-    // console.log(editorID);
+    console.log(editorID);
 
     try {
         let resultFile = await writeHTML(currentHTML, editorID);
@@ -92,13 +95,19 @@ router.post('/saveEditor', async (req, res) => {
         'fileID': `${editorID}`
     };
 
-    const chkfileID = 'SELECT fileID FROM userFile where fileID=?;'
+    const chkfileID = 'SELECT userID,fileID FROM userFile where fileID=?;'
     let searchresult = await functions.sqlquery(chkfileID, editorID);
+    console.log(searchresult)
     if (searchresult.length != 0) {
         const sqluserPile = `UPDATE userFile SET title=?,saveTime = ? where fileID = ?`;
         let saveResult = await functions.sqlquery(sqluserPile, [title, currentTime, editorID]);
-    }
-    else {
+        const result = searchresult.find(x => x.userID == userID);
+        // console.log(result);
+        if (result==undefined) {
+            const sqluserPile = 'INSERT INTO `userFile` SET ?';
+            let saveResult = await functions.sqlquery(sqluserPile, userEditor);
+        }
+    } else {
         const sqluserPile = 'INSERT INTO `userFile` SET ?';
         let saveResult = await functions.sqlquery(sqluserPile, userEditor);
     }
@@ -113,14 +122,22 @@ router.post('/usereditor', async (req, res) => {
     console.log(userID);
 
     const chkfileExist = 'SELECT * FROM userFile where userID=? AND fileID=?;'
-    let searchresult = await functions.sqlquery(chkfileExist, [userID,editorID]);
+    let searchresult = await functions.sqlquery(chkfileExist, [userID, editorID]);
     console.log(searchresult)
     if (searchresult.length != 0) {
-        return res.json(editorID);
-        // res.status(200);
+        const returnArr = {
+            "status": "Exist",
+            "editorID": editorID
+        };
+        return res.json(returnArr);
+        // return res.redirect(`./pile/${editorID}.html`);
     }
     else {
-        return res.json('YOU DO NOT HAVE THIS EDITOR!!')
+        const returnArr = {
+            "status": "Non-Exist",
+            "editorID": null
+        };
+        return res.json(returnArr);
     }
 
 })
@@ -171,8 +188,8 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
         });
         workerProcess.stderr.on("data", (data) => {
             errM = data.toString().split('\r')[0];
-            // resolve(errM);
-            resolve("This code run too long");
+            resolve(errM);
+            // resolve("This code run too long");
         });
         workerProcess.stdout.on("end", () => {
             console.log(`This is exit resolve code: ${workerProcess.exitCode}`)

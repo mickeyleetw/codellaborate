@@ -14,9 +14,9 @@ function checkStatus(response) {
 // -------------------------------------------------------------------------
 function signup() {
     const userData = {
-        "name": document.getElementById('exampleInputName1').value,
-        "email": document.getElementById('exampleInputEmail1').value,
-        "password": document.getElementById('exampleInputPassword1').value,
+        "name": document.getElementById('exampleInputName2').value,
+        "email": document.getElementById('exampleInputEmail2').value,
+        "password": document.getElementById('exampleInputPassword2').value,
     }
     fetch('/user/signup', {
         method: 'POST',

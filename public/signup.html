@@ -12,6 +12,8 @@
   <link rel="stylesheet" type="text/css" href="css/stylelogin.css" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
 
   <!-- Custom styles for this template -->
   <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
@@ -41,35 +43,28 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="global-container">
-    <div class="card login-form">
-      <div class="card-body">
-        <h3 class="card-title text-center">Sign Up to JSONLINE</h3>
-        <div class="card-text">
-          <!--
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-
-            <!-- to error: add class "has-danger" -->
-            <div class="form-group">
-              <label for="exampleInputEmail1">Full Name</label>
-              <input type="name" class="form-control form-control-sm" id="exampleInputName1">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" id="signup">Create account</button>
-
-        </div>
-      </div>
-    </div>
+  <div id="form_box" ; style="float:left">
+    <form>
+      <p id="form_heading">Login</p>
+      <input type="email" placeholder="Email"><br />
+      <input type="password" placeholder="Password"><br />
+      <input type="checkbox" id="checkbox"><label for="checkbox" style="color:white; font-size:15px;">Remember
+        Me</label><br />
+      <input type="submit" value="Login"><br />
+      <a id="font_20">Forgot your Password?</a><br /><br />
+    </form>
+  </div>
+  <div id="form_box" ; style="float:right">
+    <form>
+      <p id="form_heading">Signup</p>
+      <input type="email" placeholder="Email"><br />
+      <input type="password" placeholder="Password"><br />
+      <input type="password" placeholder="Confirm Password"><br />
+      <input type="submit" value="Signup"><br />
+    </form>
   </div>
 
-
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -84,7 +79,9 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="script/signuplogin.js"></script>
   <script src="script/signup.js"></script>
+  <script src="script/signin.js"></script>
 
 </body>
 

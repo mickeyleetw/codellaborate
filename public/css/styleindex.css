@@ -1,50 +1,93 @@
-body {
-  background-image: url("../img/mainImg.jpg");
-  padding-top: 56px;
-}
-
-/* textarea{
-    width:100%;
-    height: 70vh;
-} */
-
 /*!
  * Start Bootstrap - Modern Business (https://startbootstrap.com/template/modern-business)
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+ body {
+  padding-top: 56px!important;
+  background: #222!important;
+  /* color: #fc0!important; */
+}
 
-.remote-caret {
-    position: relative;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    margin-left: -1px;
-    margin-right: -1px;
-    box-sizing: border-box;
-  }
-  .remote-caret > div {
-    position: absolute;
-    top: -1.05em;
-    left: -1px;
-    font-size: .6em;
-    background-color: rgb(250, 129, 0);
-    font-family: serif;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    user-select: none;
-    color: white;
-    padding-left: 2px;
-    padding-right: 2px;
-    z-index: 3;
-    transition: opacity .3s ease-in-out;
-  }
-  .remote-caret.hide-name > div {
-    transition-delay: .7s;
-    opacity: 0;
-  }
-  .remote-caret:hover > div {
-    opacity: 1;
-    transition-delay: 0s;
-  }
+.navbar-brand{
+  color: #FFFFFF!important;
+}
+.navbar-expand-lg {
+  /* margin:10px; */
+  background: #222!important;
+  color: #fc0!important;
+}
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
+a{
+  text-decoration: none!important;
+  color: grey!important;
+}
+
+.button1{
+  text-align: center;
+  margin:20px;
+  background:none;
+  border:none;
+  padding:15px 30px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition: all 0.2s;
+  outline:none;
+  color: grey!important;
+
+}
+
+.button1:hover{
+  border:2px solid grey;
+  color: grey!important;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+
+@-webkit-keyframes animatedBackground {
+  0% {    background-position: 0 0; }
+  100% {    background-position: 0 100%; } }
+
+@keyframes animatedBackground {
+  0% {    background-position: 0 0; }
+  100% {    background-position: 0 100%; } }
+
+#pane {
+  color:#fc0!important;
+
+  width: 100%;
+  height: 500px;
+  margin: 50px 0 40px 0;
+  border-top: 1px dotted #ffcc00;
+  border-bottom: 1px dotted #ffcc00;
+  background-image: url(https://i.imgur.com/Zc48ySX.png);
+  background-size: cover!important;
+  background-position: 0px 0px;
+  -webkit-animation: animatedBackground 100s linear infinite;
+  animation: animatedBackground 100s linear infinite; 
+}
+
+.create {
+  background:transparent;
+  color: #fc0;
+  border: none;
+  outline:none
+}
+
+footer{
+  background: #222!important;
+  color: #fc0!important;
+}

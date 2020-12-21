@@ -2,145 +2,128 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
-  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
-  <script src="socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="./dist/codemirror.bundle.js" async></script>
-  <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+    <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+    <script src="socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="./dist/codemirror.bundle.js" async></script>
+    <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+    <script src="https://kit.fontawesome.com/f6250eb155.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
-  <title>NewCode</title>
+    <!-- Custom styles for this template -->
+    <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
+    <title>CHICHI CODE</title>
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">JS ONLINE</a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="neweditor.html">&lt;NEW EDITOR&gt;</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signin.html">&lt;SIGN IN&gt;</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signup.html">&lt;SIGN UP&gt;</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- Page Content -->
-  <div class="container">
-    <!-- Jumbotron Header -->
-    
-    <header class="jumbotron my-4">
-      <button type="submit" id="button">RunCode</button>
-      <button type="button" id="y-connect-btn">Disconnect</button>
-      <label for="filename">Title</label>
-      <input type="text" id="filename">
-      <textarea id="editor" style="display: none;"></textarea>
-      <!-- <h1 class="display-3">A Warm Welcome!</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-      <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
-      <button type="button" id="save-btn">Save This Editor</button>
-    </header>
-    
-    <div class="code-sharing">
-      <span class="link-to-share ng-binding">Link to share pile:</span>
-      <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="">
-      <span class="label no-padding clip-copy"></span>
-    </div>
-
-    <!-- Page Features -->
-    <div class="row text-center">
-      <!-- <h3>Running Result:</h3><br>
-      <p class='output'></p> -->
-      <div class="col-lg-3 col-md-6 mb-4">
-        <h4>Running Result:</h4>
-        <!-- <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div> -->
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="output">
-          <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div> -->
-        </div>
-      </div>
-
-      <!-- <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">YICHI CODE</a>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link button1" href="signuplogin.html">SIGN UP/ LOG IN</button>
+              </li>
+              <li class="nav-item" style="display: none">
+                <button class="nav-link button1" href="profile.html">USER</button>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
+      </nav>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div> -->
-
-    </div>
-    <!-- /.row -->
-
-  </div>
-  <!-- <div >
+    <header class="editor">
+        <i class="far fa-play-circle" id="button" type="submit">Run</i>&nbsp;&nbsp;
+        <!-- <button class="runcode" type="submit" id="button"><i class="far fa-play-circle"></i>RUN</button> -->
+        <!-- <a id='y-connect-btn'><i class="fas fa-toggle-off" type="submit">Disconnect</i></a>&nbsp;&nbsp; -->
+        <button type="button" id="y-connect-btn" class="fasa">Disconnect</button>
+        <label for="filename">Title</label>
+        <input type="text" id="filename">
         <textarea id="editor" style="display: none;"></textarea>
-        <button type="submit" id="button">RunCode</button>
+        <!-- <h1 class="display-3">A Warm Welcome!</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+        <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
+        <i class="far fa-save fa-1.9x" type="button" id="save-btn">&nbsp;Save Editor</i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="code-sharing">
+            <span class="link-to-share ng-binding">Link to share</span>
+            <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="">
+            <span class="label no-padding clip-copy"></span>
+        </a>
+        <!-- <button type="button" id="save-btn">Save This Editor</button> -->
+    </header>
 
-        <h3>Running Result:</h3>
-        <div class='output'></div>
-    </div> -->
-  <script src="/script/RunCode.js"></script>
-  <script src="/script/SaveEditor.js"></script>
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    <!-- Page Content -->
+    <div class="container ">
+
+        <h4 class="my-4">Running Result:</h4>
+
+        <!-- Marketing Icons Section -->
+        <div class="row output">
+            <!-- <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Card Title</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
+                            necessitatibus neque.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Card Title</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam
+                            eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque
+                            exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Card Title</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
+                            necessitatibus neque.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- /.row -->
+        <!-- /.row -->
+        <!-- /.row -->
+
+        <hr>
+
     </div>
     <!-- /.container -->
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

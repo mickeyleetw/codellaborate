@@ -2,6 +2,8 @@
 let urlcurrent = (new URL(document.location))
 console.log(urlcurrent)
 document.getElementById('neweditor').addEventListener('click', newEditor);
+document.getElementById('createneweditor').addEventListener('click', newEditor);
+chklogin();
 // FetchDetails(id, rednerDetails);
 
 //--------------------------------------------------------------------------
@@ -19,15 +21,28 @@ async function newEditor() {
     .then(checkStatus)
     .then(async json => {
         const id=json.id;
-        const url=json.url;
-        // window.location.href = `${urlcurrent}/editor/check`;
-        // console.log(urlcurrent)
-        const res = await fetch(`${urlcurrent.origin}/editor/check?id=${id}`)
-        const editorId = await res.json();
-        console.log(editorId)
-        window.location.href = `editor?id=${editorId}`;
+        window.location.href = `/editor/${id}`;
     })
     .catch(error => {
         console.log('Fetch Error: ', error);
     })
+}
+//--------------------------------------------------------------------------
+async function chklogin(){
+    const token = localStorage.getItem('access_token');
+    if (token) {
+        const resFromProfile = await fetch('/user/profile', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const jsonFromProfile = await checkStatus(resFromProfile);
+        // const user = jsonFromProfile.data;
+        // userProfile(user);
+        let signin=document.getElementById('signin');
+        signin.setAttribute("style","display:none");
+        let signout=document.getElementById('signout');
+        signout.setAttribute("style","display:true");
+    }
 }

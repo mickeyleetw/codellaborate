@@ -1,6 +1,72 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap"); */
+
 body {
-  padding-top: 56px;
+  padding-top: 56px!important;
+  background: #222!important;
+  color:#f8f8f2!important;
 }
+
+.navbar-expand-lg {
+  /* margin:10px; */
+  background: #222!important;
+  /* color: #fc0!important; */
+}
+
+.button1{
+  text-align: center;
+  margin:10px;
+  background:none;
+  border:none;
+  /* padding:15px 30px; */
+  text-transform:uppercase;
+  cursor:pointer;
+  transition: all 0.2s;
+  outline:none
+
+}
+
+.button1:hover{
+  border:2px solid grey;
+  color: grey;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+
+.editor{
+  background: #222!important;
+  margin: 50px;
+  /* margin-right: 50px; */
+}
+
+.cm-s-monokai.CodeMirror {
+  border: 1px solid #ffcc00;
+  border-color: #f8f8f2!important;
+  background: #222;
+  color: #f8f8f2;
+}
+
+.CodeMirror-gutters {
+  border-right: solid #ddd;
+  background-color: #222!important;
+  white-space: nowrap;
+}
+
+.far{
+  font-size:60x;
+  /* border:1px solid #ffcc00; */
+  background-color: #222!important;
+  color:#ffcc00;
+}
+
+.fasa{
+  font-size:20x;
+  color: #ffcc00;
+  border:none;
+  outline:none;
+  background-color: #222!important;
+}
+
+a:hover{text-decoration:none!important;}
+
 
 /* textarea{
     width:100%;
@@ -63,3 +129,54 @@ body {
     transition-delay: 0s;
   }
 
+  .input {
+    display: inline-block;
+    position: relative;
+    margin-top: 17px;
+    margin-bottom: 5px;
+    transition: 0.2s ease;
+  }
+  
+  .input input {
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    background: #222;
+    font: inherit;
+    color: inherit;
+    border-radius: 3px;
+    /* padding: 10px; */
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    transition: inherit;
+  }
+  .input input:focus {
+    box-shadow: 0 0 0 1px  rgb(255, 204, 0), 0 0 0 4px rgba(255, 204, 0, 0.3),
+      0 0 0 1px  #ffcc00;
+  }
+  
+  .input a {
+    color:#ffcc00;
+    display: grid;
+    align-content: center;
+    position: absolute;
+    height: calc(100% - 1px);
+    /* padding: 0 4px; */
+    left: 7px;
+    top: 0;
+    /* color: gray; */
+    pointer-events: none;
+    user-select: none;
+    transition: inherit;
+  }
+  .input input:focus + a,
+  .input input:valid + a {
+    top: -10px;
+    left: 5px;
+    height: 15px;
+    font-size: 14px;
+    box-shadow: inset 0 -5px 0 0 #222;
+  }
+  .input input:focus + a {
+    color:  #ffcc00;
+    box-shadow: inset 0 -9.5px 0 0 #38383d;
+  }

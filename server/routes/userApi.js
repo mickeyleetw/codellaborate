@@ -83,7 +83,7 @@ router.post('/signin', async (req, res) => {
     if (valid == 'native') {
         const sqluein = `SELECT * FROM users WHERE email = '${req.body.email}'`;
         let resultn = await functions.sqlquery(sqluein);
-        let userin = result[0];
+        let userin = resultn[0];
 
         if (resultn.length > 0) {
             const hashedPassword = hashPassword(req.body.password, userin.salt);

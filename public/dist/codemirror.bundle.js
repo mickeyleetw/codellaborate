@@ -105,20 +105,21 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-env browser */
 
 // @ts-ignore
-//create RandomColor for cursor
+
 
 
 // get DomainName and roomID
 let urlcurrent = (new URL(document.location));
 // console.log(urlcurrent);
-let editorId=urlcurrent.searchParams.get('id');
-// console.log(editorId);
+// let editorId=urlcurrent.searchParams.get('id');
+let editorId=urlcurrent.pathname.split('/')[2]
+console.log(editorId);
+// console.log('QQ');
 
 
 
 
 window.addEventListener('load', () => {
-
   function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -143,34 +144,10 @@ window.addEventListener('load', () => {
 };
 
 
-//   const token = localStorage.getItem('access_token');
-//   if (token) {
-//       const res=await fetch('user/profile', {
-//           method: 'GET',
-//           headers: {
-//               'Authorization': `Bearer ${token}`
-//           }
-//       });
-//       console.log(res);
-//       const res2= await checkStatus(res);
-//       console.log(res2);
-//       name=res2.data.name;
-//   }
-//   console.log(name)
-//   return name;
-// }
-// const DN=`${urlcurrent.host}${urlcurrent.pathname}?id`
-
-// let username;
-// (async () =>{
-//   username=await checkAccessToken();
-//   console.log(username+'QQ');
-// })()
-
-
+  // let room=(Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3))
+  // console.log(room);
   const ydoc = new yjs__WEBPACK_IMPORTED_MODULE_1__["Doc"]()
   const provider = new y_websocket__WEBPACK_IMPORTED_MODULE_2__["WebsocketProvider"](
-    // `ws://${DN}`,
     'wss://demos.yjs.dev',
     editorId,
     ydoc
@@ -192,22 +169,19 @@ window.addEventListener('load', () => {
 
   const binding = new y_codemirror__WEBPACK_IMPORTED_MODULE_3__["CodemirrorBinding"](yText, editor, provider.awareness);
 
-  // const connectBtn = /** @type {HTMLElement} */ (document.getElementById('y-connect-btn'))
-  // connectBtn.addEventListener('click', () => {
-  //   if (provider.shouldConnect) {
-  //     provider.disconnect()
-  //     connectBtn.textContent = 'Connect'
-  //   } else {
-  //     provider.connect()
-  //     connectBtn.textContent = 'Disconnect'
-  //   }
-  // })
+  const connectBtn = /** @type {HTMLElement} */ (document.getElementById('y-connect-btn'))
+  connectBtn.addEventListener('click', () => {
+    if (provider.shouldConnect) {
+      provider.disconnect()
+      connectBtn.textContent = 'Connect'
+    } else {
+      provider.connect()
+      connectBtn.textContent = 'Disconnect'
+    }
+  })
 
   // @ts-ignore
   window.example = { provider, ydoc, yText, binding, Y: yjs__WEBPACK_IMPORTED_MODULE_1__ }
-  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name:getUsername() })
-  const shareLink = document.getElementById('code-sharing');
-  shareLink.setAttribute('value',document.location.href);
 })
 
 
@@ -18244,7 +18218,7 @@ const updateRemoteSelection = (y, cm, type, cursors, clientId, awareness) => {
   }
   const user = aw.user || {}
   if (user.color == null) {
-    user.color = '#ffa500';
+    user.color = '#ffa500'
   }
   if (user.name == null) {
     user.name = `User: ${clientId}`

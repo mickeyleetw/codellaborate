@@ -9,7 +9,7 @@
   <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css"> -->
 
-  <link rel="stylesheet" type="text/css" href="css/stylelogin.css" />
+  <link rel="stylesheet" type="text/css" href="css/styleindex.css" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,10 +30,13 @@
             <a class="nav-link" href="neweditor.html">&lt;NEW EDITOR&gt;</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signin.html">&lt;SIGN IN&gt;</a>
+            <a class="nav-link" href="signin.html" id="signin">&lt;SIGN IN&gt;</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">&lt;SIGN UP&gt;</a>
+            <a class="nav-link" href="signup.html" id="signin">&lt;SIGN UP&gt;</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="signup.html" id="signin">&lt;Profile&gt;</a>
           </li>
         </ul>
       </div>
@@ -41,34 +44,43 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="global-container">
-    <div class="card login-form">
-      <div class="card-body">
-        <h3 class="card-title text-center">Sign in to JSONLINE</h3>
-        <div class="card-text">
-          <!--
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-
-            <!-- to error: add class "has-danger" -->
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" id="signin">Sign in</button>
-
-            <div class="sign-up">
-              Don't have an account? <a href="signup.html">Create One</a>
-            </div>
-        </div>
+  <div class="row text-center">
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="form-group" id="profile-details">
+        <p><em class="text-blue-400">const Profile (sing_in) = >{</p>
+        <p>&nbsp;&nbsp;<span class="text-pink-500">return</span> {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span id="name"></span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;email: <span id="email"></span>,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>}</p>
       </div>
     </div>
-  </div>
 
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div>
+        <table>
+          <thead></thead>
+          <tr>
+            <td>title&nbsp;&nbsp;</td>
+            <td>CreateTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>fileID&nbsp;&nbsp;</td>
+            <td>view</td>
+          </tr>
+          </thead>
+          <tbody id='userfile'>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+  </div>
+  </div>
+  </div>
 
   <!-- /.container -->
 
@@ -84,7 +96,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="script/signin.js"></script>
+  <script src="script/profile.js"></script>
 
 </body>
 

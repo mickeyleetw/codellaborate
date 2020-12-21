@@ -21,9 +21,14 @@ app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 
 app.use(express.static('./public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(bodyParser.text());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.text());
+app.use(bodyParser.json({limit: '200mb'}));
+app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
+app.use(bodyParser.text({limit: '200mb'}));
+
+
 
 //Setup Router
 app.use("/editor",editorRoutes);

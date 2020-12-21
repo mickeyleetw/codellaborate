@@ -1,5 +1,6 @@
+chklogin();
 userInformation();
-// document.getElementById('signout').addEventListener('click',signout)
+document.getElementById('logout').addEventListener('click',signout)
 // -------------------------------------------------------------------------
 function checkStatus(response) {
     if (response.ok) {
@@ -53,9 +54,9 @@ async function userInformation() {
             tr.appendChild(td4);
 
             let buttonID=document.getElementById(`view${numfile+1}`);
-            // console.log(user.id);
-            // console.log(jsonFromuserFile[numfile].fileID);
-            buttonID.addEventListener('click',loadfile(user.id,jsonFromuserFile[numfile].fileID));
+            buttonID.addEventListener('click',function() {
+                loadfile(user.id,jsonFromuserFile[numfile].fileID);
+            });
         }
         // console.log('done')
         // table.appendChild(tr)
@@ -63,7 +64,7 @@ async function userInformation() {
 
     } else {
         alert('Please Sign In First')
-        window.location.href = `./signIn.html`
+        window.location.href = "./signuplogin.html"
     }
 }
 // -------------------------------------------------------------------------
@@ -78,10 +79,11 @@ function userProfile(user) {
 // -------------------------------------------------------------------------
 function signout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+    window.location.href = "./index.html"
 }
 // -------------------------------------------------------------------------
 async function loadfile(userid,editorid) {
-    console.log('QQ');
     const IDS = await fetch('/editor/usereditor',  {
         method: 'POST',
         headers: {
@@ -91,5 +93,31 @@ async function loadfile(userid,editorid) {
     });
     const jsonIDS = await checkStatus(IDS);
     console.log(jsonIDS);
-    console.log('QQ2');
+    if(jsonIDS.status=='Exist'){
+        window.location.href=`./editor/${editorid}`
+    }
+    else{
+        alert('YOU DO NOT HAVE THIS EDITOR')
+    }
+
+    // console.log('QQ2');
+}
+// -------------------------------------------------------------------------
+async function chklogin(){
+    const token = localStorage.getItem('access_token');
+    if (token) {
+        const resFromProfile = await fetch('/user/profile', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const jsonFromProfile = await checkStatus(resFromProfile);
+        // const user = jsonFromProfile.data;
+        // userProfile(user);
+        let signin=document.getElementById('signin');
+        signin.setAttribute("style","display:none");
+        let signout=document.getElementById('signout');
+        signout.setAttribute("style","display:true");
+    }
 }

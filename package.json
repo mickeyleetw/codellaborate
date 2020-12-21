@@ -25,6 +25,7 @@
     "routes": "^2.1.0",
     "serve": "^11.3.2",
     "socket.io": "^3.0.4",
+    "sweetalert": "^2.1.2",
     "url": "^0.11.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",

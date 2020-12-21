@@ -1,4 +1,5 @@
-document.getElementById('save-btn').addEventListener('click', saveEditor);
+document.getElementById('save-btn').addEventListener('click', saveEditor)
+let host = document.location.origin;
 // -------------------------------------------------------------------------
 function checkStatus(response) {
     if (response.ok) {
@@ -10,46 +11,39 @@ function checkStatus(response) {
     }
 }
 // -------------------------------SaveEditor------------------------------------------
-function saveEditor() {
+async function saveEditor() {
     // const token = localStorage.getItem('access_token');
     const currentHTML = document.documentElement.outerHTML;
     const editorURL = document.location.href;
-    const title=document.getElementById('filename').value;
-    // console.log(editorURL);
+    const title = document.getElementById('filename').value;
+    console.log(editorURL);
     const token = localStorage.getItem('access_token');
     console.log(token);
     if (token) {
-        fetch('user/profile', {
+        const chkuser = await fetch(`${host}/user/profile`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
+        });
+        const chkuserres = await checkStatus(chkuser);
+        console.log(chkuserres);
+        const userID = chkuserres.data.id;
+        const pilecontent = {
+            'user': userID,
+            'html': currentHTML,
+            'filename': title,
+            'fileURL': editorURL,
+        };
+        console.log(pilecontent);
+        await fetch('/editor/saveEditor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pilecontent)
         })
-            .then(checkStatus)
-            .then(json => {
-                console.log(json);
-                const userID = json.data.id;
-                const pilecontent = {
-                    'user': userID,
-                    'html': currentHTML,
-                    'filename':title,
-                    'fileURL': editorURL,
-                };
-                // console.log(pilecontent);
-                // return pilecontent;
-
-                const res=fetch('/editor/saveEditor', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(pilecontent)
-                })
-                console.log(res);
-            })
-            .catch(error => {
-                console.log('Fetch Error: ', error);
-            })
+        alert('Editor Saved')
     } else {
         alert('Please Sign In First')
     }

@@ -1,4 +1,4 @@
-document.getElementById('signin').addEventListener('click', signin);
+document.getElementById('login').addEventListener('click', signin);
 // -------------------------------------------------------------------------
 function checkStatus(response) {
     if (response.ok) {

@@ -2,98 +2,101 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
-  <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
-  <!-- <script src="socket.io/socket.io.js"></script> -->
-  <!-- <script type="text/javascript" src="./dist/codemirror.bundle.js" async></script>
-  <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css" async defer>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css"> -->
-
-  <link rel="stylesheet" type="text/css" href="css/styleindex.css" />
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
-  <title>NewCode</title>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
+    <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1'>
+    <link rel="stylesheet" type="text/css" href="css/styleindex.css" />
+    <link rel="stylesheet" type="text/css" href="css/profile.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>CHICHI CODE</title>
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CHICHI CODE</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
+                    </li>
+                    <li class="nav-item" id='signin'>
+                        <button class="nav-link button1"><a href="signuplogin.html">SIGN UP/ LOG IN</a></button>
+                      </li>
+                      <li class="nav-item" id="signout" style="display: none">
+                        <button class="nav-link button1"><a href="profile.html">PROFILE/ LOG OUT</a></button>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- Page Content -->
     <div class="container">
-      <a class="navbar-brand" href="index.html">JS ONLINE</a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="neweditor.html">&lt;NEW EDITOR&gt;</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">&lt;LOGIN&gt;</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="signup.html">&lt;SIGN UP&gt;</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Page Content -->
-  <div class="row text-center">
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="form-group" id="profile-details">
-        <p><em class="text-blue-400">const Profile (sing_in) = >{</p>
-        <p>&nbsp;&nbsp;<span class="text-pink-500">return</span> {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span id="name"></span>,</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;email: <span id="email"></span>,</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-        <p>}</p>
-      </div>
-    </div>
+        <!-- Portfolio Item Row -->
+        <div class="row userinfo">
+            <div class="col-md-8">
+                <table>
+                    <thead>
+                      <tr>
+                        <th>TITLE
+                        <th>CREATE TIME
+                        <th>FILE ID
+                        <th>VIEW
+                    </thead>
+                    <tbody id="userfile">
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-4">
+                <figure class="snip1522">
+                    <div class="profile-image"><img src="./img/thumb.jpg" />
+                        <div class="icons" id="logout"><a href="#"><i class="icon ion-log-out"> LOG OUT</i></a></div>
+                    </div>
+                    <figcaption>
+                        <h3>Hello!</h3>
+                        <h4 id="name">Founder,</h4>
+                        <h4 id="email">mail:123@gmail.</h4>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <!-- /.row -->
 
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div>
-        <table>
-          <thead></thead>
-          <tr>
-            <td>title&nbsp;&nbsp;</td>
-            <td>CreateTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td>fileID&nbsp;&nbsp;</td>
-            <td>view</td>
-          </tr>
-          </thead>
-          <tbody id='userfile'>
+        <!-- Related Projects Row -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+            </div>
 
-          </tbody>
+            <div class="col-md-3 col-sm-6 mb-4">
+            </div>
 
-        </table>
-      </div>
-    </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+            </div>
 
+            <div class="col-md-3 col-sm-6 mb-4">
+            </div>
+        </div>
+        <!-- /.row -->
 
-
-  </div>
-  </div>
-  </div>
-  </div>
-
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->
-  </footer>
 
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; CHICHI CODE 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="script/profile.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="script/profile.js"></script>
+    
 
 </body>
 

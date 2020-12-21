@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CHICHI CODE</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <!-- <link href="css/stylelogin.css" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="css/styleindex.css" />
+  <link rel="stylesheet" type="text/css" href="css/stylelogin.css" />
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+  integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <i class="fa fa-code"></i>
+      <a class="navbar-brand" href="index.html">CHICHI CODE</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
+          </li>
+          <li class="nav-item" id='signin'>
+            <button class="nav-link button1"><a href="signuplogin.html">SIGN UP/ LOG IN</a></button>
+          </li>
+          <li class="nav-item" id="signout" style="display: none">
+            <button class="nav-link button1"><a href="profile.html">PROFILE/ LOG OUT</a></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container2">
+    <div class="backbox">
+      <div class="loginMsg">
+        <div class="textcontent">
+          <p class="title">Don't have an account?</p>
+          <p>Sign up to save all your editor.</p>
+          <button class="switch" id="switch1">Sign Up</button>
+        </div>
+      </div>
+      <div class="signupMsg visibility">
+        <div class="textcontent">
+          <p class="title">Have an account?</p>
+          <p>Log in to see all your editor.</p>
+          <button class="switch" id="switch2">LOG IN</button>
+        </div>
+      </div>
+    </div>
+    <!-- backbox -->
+
+    <div class="frontbox">
+      <div class="login">
+        <h2>LOG IN</h2>
+        <div class="inputbox">
+          <input type="text" name="email" id="exampleInputEmail1" placeholder="  EMAIL">
+          <input type="password" name="password" id="exampleInputPassword1" placeholder="  PASSWORD">
+        </div>
+        <button id="login">LOG IN</button>
+      </div>
+
+      <div class="signup hide">
+        <h2>SIGN UP</h2>
+        <div class="inputbox">
+          <input type="text" name="fullname" id="exampleInputName2" placeholder="  FULLNAME">
+          <input type="email" name="email"  id="exampleInputEmail2" placeholder="  EMAIL">
+          <input type="password" name="password" id="exampleInputPassword2" placeholder="  PASSWORD">
+        </div>
+        <button id="signup">SIGN UP</button>
+      </div>
+    </div>
+    <!-- frontbox -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <!-- <footer class="py-5">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div> -->
+    <!-- /.container -->
+  <!-- </footer> -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="./script/index.js"></script>
+  <script src="script/signuplogin.js"></script>
+  <script src="script/signup.js"></script>
+  <script src="script/signin.js"></script>
+
+</body>
+
+</html>
