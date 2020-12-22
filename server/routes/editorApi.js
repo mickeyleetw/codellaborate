@@ -188,8 +188,8 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
         });
         workerProcess.stderr.on("data", (data) => {
             errM = data.toString().split('\r')[0];
-            resolve(errM);
-            // resolve("This code run too long");
+            // resolve(errM);
+            resolve("This code got Something Wrong!!!!");
         });
         workerProcess.stdout.on("end", () => {
             console.log(`This is exit resolve code: ${workerProcess.exitCode}`)
