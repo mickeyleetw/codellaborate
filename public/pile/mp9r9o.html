@@ -32,17 +32,17 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="../index.html">YICHI CODE</a>
+          <a class="navbar-brand" href="../index.html">CHICHI CODE</a>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <button class="nav-link button1" id="../neweditor">NEW EDITOR</button>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="signin" style="display:none">
                 <button class="nav-link button1"><a href="../signuplogin.html">SIGN UP/ LOG IN</a></button>
               </li>
-              <li class="nav-item" style="display: none">
-                <button class="nav-link button1" href="../profile.html">USER</button>
+              <li class="nav-item" id="signout" style="display:true">
+                <button class="nav-link button1"><a href="../profile.html">PROFILE/ LOG OUT</a></button>
               </li>
             </ul>
           </div>
@@ -60,7 +60,7 @@
         </div>
         <!-- <label for="filename">Title</label>
         <input type="text" id="filename"> -->
-        <textarea id="editor" style="display: none;"></textarea><div class="CodeMirror cm-s-monokai"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 63.1723px; left: 69.7159px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -15px; border-right-width: 35px; min-height: 85px; min-width: 64.1648px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like">x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style="visibility: hidden;"><div class="CodeMirror-cursor" style="left: 39.7254px; top: 58.1818px; height: 19.3939px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9962px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">jkk</span>.<span class="cm-property">mo</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9962px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">nioujn</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9962px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">biouok</span>;;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9962px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">p</span>[][\</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 35px; width: 1px; border-bottom: 0px solid transparent; top: 85px;"></div><div class="CodeMirror-gutters" style="height: 120px; left: 0.00379181px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+        <textarea id="editor" style="display: none;"></textarea><div class="CodeMirror cm-s-monokai"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4.99052px; left: 48.1723px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 29px; margin-bottom: -15px; border-right-width: 35px; min-height: 27px; min-width: 21.2765px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like">x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style="visibility: hidden;"><div class="CodeMirror-cursor" style="left: 18.1818px; top: 0px; height: 19.3939px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28.9962px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">QQ</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 35px; width: 1px; border-bottom: 0px solid transparent; top: 27px;"></div><div class="CodeMirror-gutters" style="height: 62px; left: 0.00379181px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
         <!-- <h1 class="display-3">A Warm Welcome!</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
         <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
@@ -132,12 +132,13 @@
 
     </div>
     <!-- /.container -->
+    <script src="../script/neweditor.js"></script>
     <script src="../script/RunCode.js"></script>
     <script src="../script/SaveEditor.js"></script>
     <!-- Footer -->
     <footer class="py-5">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright © Your Website 2020</p>
+            <p class="m-0 text-center text-white">Copyright © CHICHI CODE 2020</p>
         </div>
         <!-- /.container -->
     </footer>

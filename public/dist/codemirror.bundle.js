@@ -182,6 +182,7 @@ window.addEventListener('load', () => {
 
   // @ts-ignore
   window.example = { provider, ydoc, yText, binding, Y: yjs__WEBPACK_IMPORTED_MODULE_1__ }
+  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name: getUsername() })
 })
 
 

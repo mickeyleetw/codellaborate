@@ -28,7 +28,7 @@ function runcode() {
             const output = document.getElementsByClassName('output');
             output[0].innerHTML = json['Result'];
             // // const runningresult = json;
-            console.log(json['Result']);
+            // console.log(json['Result']);
             // // localStorage.setItem('access_token', token);
             // // window.location.href = "./index.html";
         }).catch(error => {
@@ -46,13 +46,16 @@ function getCode() {
     code = [];
     for (i = 0; i < num; i++) {
         let lineText = codecontent[i].innerText;
-        console.log(lineText);
-        if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) {
-            // console.log('skipped');
-            continue;
-        }
-        else { code += lineText ; }
-        // code += lineText+'\n';
+        let endpoint = lineText[Number(lineText.length - 1)];
+        let chkconsole=lineText
+        // console.log(endpoint);
+        if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
+        // if (endpoint != ';') {
+            lineText = lineText + '\n';
+            // console.log(lineText);
+        // }
+        code += lineText;
+        console.log(code); 
     }
     console.log(code);
     return code;
