@@ -154,7 +154,7 @@ function writeHTML(html, id) {
 // -------------------------Write CODE File------------------------------------------------
 function writeCODE(code) {
     return new Promise((resolve, rejects) => {
-        fs.writeFile('../temp/CODE.js', code, function (err) {
+        fs.writeFile('../temp/code.js', code, function (err) {
             if (err) { rejects(err); }
             else { resolve('Write operation complete.') }
         });
