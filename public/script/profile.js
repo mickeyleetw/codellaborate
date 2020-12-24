@@ -55,7 +55,7 @@ async function userInformation() {
 
             let buttonID=document.getElementById(`view${numfile+1}`);
             buttonID.addEventListener('click',function() {
-                loadfile(user.id,jsonFromuserFile[numfile].fileID);
+                loadfile(jsonFromuserFile[numfile].fileID);
             });
         }
         // console.log('done')
@@ -83,24 +83,24 @@ function signout() {
     window.location.href = "./index.html"
 }
 // -------------------------------------------------------------------------
-async function loadfile(userid,editorid) {
-    const IDS = await fetch('/editor/usereditor',  {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ "userID":userid,"editorID": editorid })
-    });
-    const jsonIDS = await checkStatus(IDS);
-    console.log(jsonIDS);
-    if(jsonIDS.status=='Exist'){
+async function loadfile(editorid) {
+    // const IDS = await fetch('/editor/usereditor',  {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ "userID":userid,"editorID": editorid })
+    // });
+    // const jsonIDS = await checkStatus(IDS);
+    // console.log(jsonIDS);
+    // if(jsonIDS.status=='Exist'){
         window.location.href=`./editor/${editorid}`
-    }
-    else{
-        alert('YOU DO NOT HAVE THIS EDITOR')
-    }
+    // }
+    // else{
+    //     alert('YOU DO NOT HAVE THIS EDITOR')
+    // }
 
-    // console.log('QQ2');
+    // // console.log('QQ2');
 }
 // -------------------------------------------------------------------------
 async function chklogin(){

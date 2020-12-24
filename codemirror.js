@@ -15,14 +15,6 @@ window.addEventListener('load', () => {
     ydoc
   )
   const yText = ydoc.getText('codemirror')
-  // const insertposition = document.getElementById('y-codemirror');
-  // const editorContainer = document.createElement('textarea')
-  // const editorContainer = document.createElement('textarea')
-  // editorContainer.setAttribute('id', 'editor')
-  // insertposition.appendChild(editorContainer)
-  // document.body.insertBefore(editorContainer, null)
-
-  // const editor = CodeMirror(editorContainer, {
   let editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     mode: 'javascript',
     lineNumbers: true,

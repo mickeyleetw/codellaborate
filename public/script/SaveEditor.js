@@ -13,10 +13,11 @@ function checkStatus(response) {
 // -------------------------------SaveEditor------------------------------------------
 async function saveEditor() {
     // const token = localStorage.getItem('access_token');
-    const currentHTML = document.documentElement.outerHTML;
+    // const currentHTML = document.documentElement.outerHTML;
+    const code=getCode();
     const editorURL = document.location.href;
     const title = document.getElementById('filename').value;
-    console.log(editorURL);
+    console.log(title);
     const token = localStorage.getItem('access_token');
     console.log(token);
     if (token) {
@@ -31,7 +32,7 @@ async function saveEditor() {
         const userID = chkuserres.data.id;
         const pilecontent = {
             'user': userID,
-            'html': currentHTML,
+            'code': code,
             'filename': title,
             'fileURL': editorURL,
         };
@@ -47,4 +48,25 @@ async function saveEditor() {
     } else {
         alert('Please Sign In First')
     }
+}
+// -----------------------------Get Code--------------------------------------------
+function getCode() {
+    let codecontent = document.getElementsByClassName('CodeMirror-line');
+    let num = codecontent.length;
+    code = [];
+    for (i = 0; i < num; i++) {
+        let lineText = codecontent[i].innerText;
+        let endpoint = lineText[Number(lineText.length - 1)];
+        let chkconsole=lineText
+        // console.log(endpoint);
+        if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
+        // if (endpoint != ';') {
+            lineText = lineText + '\n';
+            // console.log(lineText);
+        // }
+        code += lineText;
+        console.log(code); 
+    }
+    console.log(code);
+    return code;
 }

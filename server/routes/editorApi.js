@@ -13,17 +13,15 @@ router.post('/', async (req, res) => {
     //check if editor ID exist or not
     while (!chk) {
         editorId = (Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3));
+        console.log(editorId);
         const chkeditor = `SELECT * FROM editor WHERE editorID=?;`
         let chkesult = await functions.sqlquery(chkeditor, editorId);
         if (chkesult.length == 0) { break; }
         else { continue; }
     }
-    // console.log(editorId)
-    let editorURL = `editor?id=${editorId}`
-    // console.log(editorURL);
     const sqlu = `INSERT INTO editor SET editorID=?;`
     let sqlresult = await functions.sqlquery(sqlu, editorId);
-    let result = { id: editorId, url: editorURL }
+    let result = { id: editorId }
     return res.json(result);
 })
 // --------------------驗證 Editor----------------------------------------------
@@ -33,7 +31,15 @@ router.get('/:id', async (req, res) => {
     let result = (await functions.sqlquery(sqlu, editorId));
     console.log(result);
     if (result.length > 0) {
+        // const sql = 'SELECT * FROM userFile where fileID=?';
+        // let resultF = (await functions.sqlquery(sql, editorId));
+        // if(resultF.length!=0){
+        //     // res.redirect(`./${editorId}.html`);
+        //     res.render('ogfsf1');
+        // }else{
         res.render('neweditor');
+        // }
+
     } else {
         res.render('404')
         // res.send('EDITOR NOT EXIST!')
@@ -75,23 +81,24 @@ router.post('/runcode', async (req, res) => {
 // --------------------Save Current Editor-----------------------------------------------------
 router.post('/saveEditor', async (req, res) => {
     const userID = req.body.user;
-    const currentHTML = req.body.html;
+    const code = req.body.code;
     const editorID = (url.parse(req.body.fileURL, true)).pathname.split('/')[2];
     const title = req.body.filename;
     const currentTime = GetTime();
     console.log(editorID);
 
-    try {
-        let resultFile = await writeHTML(currentHTML, editorID);
-        console.log(resultFile);
-    } catch (err) {
-        console.log(err);
-    }
+    // try {
+    //     let resultFile = await writeHTML(currentHTML, editorID);
+    //     console.log(resultFile);
+    // } catch (err) {
+    //     console.log(err);
+    // }
     // userEditor Arr
     const userEditor = {
         'userID': userID,
         'title': title,
         'saveTime': currentTime,
+        'code': code,
         'fileID': `${editorID}`
     };
 
@@ -99,11 +106,11 @@ router.post('/saveEditor', async (req, res) => {
     let searchresult = await functions.sqlquery(chkfileID, editorID);
     console.log(searchresult)
     if (searchresult.length != 0) {
-        const sqluserPile = `UPDATE userFile SET title=?,saveTime = ? where fileID = ?`;
-        let saveResult = await functions.sqlquery(sqluserPile, [title, currentTime, editorID]);
+        const sqluserPile = `UPDATE userFile SET title=?,saveTime = ? code=? where fileID = ?`;
+        let saveResult = await functions.sqlquery(sqluserPile, [title, currentTime, code, editorID]);
         const result = searchresult.find(x => x.userID == userID);
         // console.log(result);
-        if (result==undefined) {
+        if (result == undefined) {
             const sqluserPile = 'INSERT INTO `userFile` SET ?';
             let saveResult = await functions.sqlquery(sqluserPile, userEditor);
         }
@@ -114,20 +121,19 @@ router.post('/saveEditor', async (req, res) => {
 
     res.send('OK')
 })
-// --------------------Reload saved Editor-----------------------------------------------------
+// --------------------GET SAVED CODE FROM DB-----------------------------------------------------
 router.post('/usereditor', async (req, res) => {
     const editorID = req.body.editorID;
-    const userID = req.body.userID;
     console.log(editorID);
-    console.log(userID);
 
-    const chkfileExist = 'SELECT * FROM userFile where userID=? AND fileID=?;'
-    let searchresult = await functions.sqlquery(chkfileExist, [userID, editorID]);
+    const chkfileExist = 'SELECT * FROM userFile where fileID=?;'
+    let searchresult = await functions.sqlquery(chkfileExist, editorID);
     console.log(searchresult)
     if (searchresult.length != 0) {
+        const code = searchresult[0].code;
         const returnArr = {
             "status": "Exist",
-            "editorID": editorID
+            "code": code
         };
         return res.json(returnArr);
         // return res.redirect(`./pile/${editorID}.html`);
@@ -135,7 +141,7 @@ router.post('/usereditor', async (req, res) => {
     else {
         const returnArr = {
             "status": "Non-Exist",
-            "editorID": null
+            "code": null
         };
         return res.json(returnArr);
     }
@@ -143,9 +149,9 @@ router.post('/usereditor', async (req, res) => {
 })
 
 // -------------------------Write HTML File------------------------------------------------
-function writeHTML(html, id) {
+function writeHTML(webcontent, id) {
     return new Promise((resolve, rejects) => {
-        fs.writeFile(`./public/pile/${id}.html`, html, function (err) {
+        fs.writeFile(`./public/views/${id}.ejs`, webcontent, function (err) {
             if (err) { rejects(err); }
             else { resolve('Write operation complete.') }
         });

@@ -9,6 +9,9 @@ const fetch = require('node-fetch');
 const functions = require('./util/functions');
 const ejs = require('ejs');
 
+const socketListener=require('./server/socket/socket_manager.js')
+io.on('connection', socketListener);
+
 functions.connectDB();
 
 const editorRoutes=require("./server/routes/editorApi");
@@ -28,8 +31,6 @@ app.use(bodyParser.json({limit: '200mb'}));
 app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(bodyParser.text({limit: '200mb'}));
 
-
-
 //Setup Router
 app.use("/editor",editorRoutes);
 app.use("/user",usergRoutes);
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.send('Error message')
+    res.render('404')
 });
 
 

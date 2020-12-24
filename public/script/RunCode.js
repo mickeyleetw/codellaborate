@@ -59,5 +59,4 @@ function getCode() {
     }
     console.log(code);
     return code;
-
 }

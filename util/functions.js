@@ -79,6 +79,7 @@ async function createAllTables() {
         userID int NOT NULL,\
         title VARCHAR(255),\
         saveTime VARCHAR(255),\
+        code VARCHAR(60000),\
         fileID VARCHAR(255) NOT NULL,\
         PRIMARY KEY(id),\
         FOREIGN KEY(userID) REFERENCES `users`(id),\

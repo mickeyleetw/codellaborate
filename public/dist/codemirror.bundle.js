@@ -153,6 +153,7 @@ window.addEventListener('load', () => {
     ydoc
   )
   const yText = ydoc.getText('codemirror')
+  console.log(yText);
   // const insertposition = document.getElementById('y-codemirror');
   // const editorContainer = document.createElement('textarea')
   // const editorContainer = document.createElement('textarea')

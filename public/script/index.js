@@ -17,18 +17,19 @@ function checkStatus(response) {
 }
 //--------------------------------------------------------------------------
 async function newEditor() {
-    fetch('/editor', {method: 'POST'})
-    .then(checkStatus)
-    .then(async json => {
-        const id=json.id;
-        window.location.href = `/editor/${id}`;
-    })
-    .catch(error => {
-        console.log('Fetch Error: ', error);
-    })
+    fetch('/editor', { method: 'POST' })
+        .then(checkStatus)
+        .then(async json => {
+            const id = json.id;
+            //get editor/:id API
+            window.location.href = `/editor/${id}`;
+        })
+        .catch(error => {
+            console.log('Fetch Error: ', error);
+        })
 }
 //--------------------------------------------------------------------------
-async function chklogin(){
+async function chklogin() {
     const token = localStorage.getItem('access_token');
     if (token) {
         const resFromProfile = await fetch('/user/profile', {
@@ -40,9 +41,9 @@ async function chklogin(){
         const jsonFromProfile = await checkStatus(resFromProfile);
         // const user = jsonFromProfile.data;
         // userProfile(user);
-        let signin=document.getElementById('signin');
-        signin.setAttribute("style","display:none");
-        let signout=document.getElementById('signout');
-        signout.setAttribute("style","display:true");
+        let signin = document.getElementById('signin');
+        signin.setAttribute("style", "display:none");
+        let signout = document.getElementById('signout');
+        signout.setAttribute("style", "display:true");
     }
 }
