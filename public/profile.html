@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/profile.css" />
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f6250eb155.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>CODELLABORATE</title>
 </head>
 
@@ -19,13 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
-                    </li>
-                    <li class="nav-item" id='signin'>
-                        <button class="nav-link button1"><a href="signuplogin.html">SIGN UP/ LOG IN</a></button>
+                        <button class="nav-link button1" id="neweditor"><i class="fas fa-file-code"> NEW EDITOR</i></button>
+                      </li>
+                      <li class="nav-item" id='signin'>
+                        <button class="nav-link button1"><a href="./signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG IN</i></a></button>
                       </li>
                       <li class="nav-item" id="signout" style="display: none">
-                        <button class="nav-link button1"><a href="profile.html">PROFILE/ LOG OUT</a></button>
+                        <button class="nav-link button1"><a href="profile.html"><i class="fas fa-address-card"> PROFILE</i></a></button>
+                      </li>
+                      <li class="nav-item" id="logout" style="display: none">
+                        <button class="nav-link button1"><i class="fas fa-sign-out-alt"> LOG OUT</i></button>
                       </li>
                 </ul>
             </div>
@@ -37,7 +42,7 @@
 
         <!-- Portfolio Item Row -->
         <div class="row userinfo">
-            <div class="col-md-8">
+            <div class="col-md-8 userfile">
                 <table>
                     <thead>
                       <tr>
@@ -51,16 +56,14 @@
                   </table>
             </div>
             <div class="col-md-4">
-                <figure class="snip1522">
-                    <div class="profile-image"><img src="./img/thumb.jpg" />
-                        <div class="icons" id="logout"><a href="#"><i class="icon ion-log-out"> LOG OUT</i></a></div>
-                    </div>
+                <figure class="snip1568">
                     <figcaption>
-                        <h3>Hello!</h3>
-                        <h4 id="name">Founder,</h4>
-                        <h4 id="email">mail:123@gmail.</h4>
+                      <h4 id='name'></h4>
+                      <h4 id='email'></h4>
                     </figcaption>
-                </figure>
+                    <div class="profile-image"><img src='./img/thumb.jpg' alt="profile-sample2" />
+                    </div>
+                  </figure>
             </div>
         </div>
         <!-- /.row -->
@@ -95,8 +98,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="script/profile.js"></script>
-    <script src="script/index.js"></script>
+    <script type="text/javascript" src="script/profile.js"></script>
     
 
 </body>

@@ -1,127 +1,134 @@
-const chatForm = document.getElementById('chat-form');
-const chatMessages = document.querySelector('.chat-messages');
-const roomName = document.getElementById('room-name');
-const userList = document.getElementById('users');
+const chatForm = document.getElementById('chat-input-content');
+const chatMessages = document.querySelector('.chat-logs');
+const submitbtn = document.getElementById('chat-submit');
+// const roomName = document.getElementById('room-name');
+// const userList = document.getElementById('users');
 
-// Get username and room from URL
-const { username, room } = Qs.parse(location.search, {
-  ignoreQueryPrefix: true
-});
+// Get username and room
+
+const username = getUsername();
+const room = document.location.pathname.split('/')[2];
+// const color = localStorage.getItem('color')
 
 const socket = io();
 
-// Join chatroom
+// Join chatroom (ok)
+
 socket.emit('joinRoom', { username, room });
 
-// Get room and users
-socket.on('roomUsers', ({ room, users }) => {
-  outputRoomName(room);
-  outputUsers(users);
-});
-
 // Message from server
-socket.on('message', message => {
+socket.on('message from bot', message => {
   console.log(message);
-  outputMessage(message);
+  outputMessage(message, 'system');
 
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-// Message submit
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
+// Message from server
+socket.on('message from self', message => {
+  console.log('My message', message);
+  outputMessage(message, 'self');
 
-  // Get message text
-  let msg = e.target.elements.msg.value;
-  
-  msg = msg.trim();
-  
-  if (!msg){
-    return false;
-  }
-
-  // Emit message to server
-  socket.emit('chatMessage', msg);
-
-  // Clear input
-  e.target.elements.msg.value = '';
-  e.target.elements.msg.focus();
+  // Scroll down
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-// Output message to DOM
-function outputMessage(message) {
-  const div = document.createElement('div');
-  div.classList.add('message');
-  const p = document.createElement('p');
-  p.classList.add('meta');
-  p.innerText = message.username;
-  p.innerHTML += `<span>${message.time}</span>`;
-  div.appendChild(p);
-  const para = document.createElement('p');
-  para.classList.add('text');
-  para.innerText = message.text;
-  div.appendChild(para);
-  document.querySelector('.chat-messages').appendChild(div);
-}
+// Message from server
+socket.on('message from others', message => {
+  console.log('Others message', message);
+  outputMessage(message, 'others');
 
-// Add room name to DOM
-function outputRoomName(room) {
-  roomName.innerText = room;
-}
+  // Scroll down
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
 
-// Add users to DOM
-function outputUsers(users) {
-  userList.innerHTML = '';
-  users.forEach(user=>{
-    const li = document.createElement('li');
-    li.innerText = user.username;
-    userList.appendChild(li);
-  });
- }
+// // Message submit (OK)
+submitbtn.addEventListener('click',sendMsg)
 
-//-----------------------------------------------------------------------------
- const users = [];
-
-// Join user to chat
-function userJoin(id, username, room) {
-  const user = { id, username, room };
-
-  users.push(user);
-
-  return user;
-}
-
-// Get current user
-function getCurrentUser(id) {
-  return users.find(user => user.id === id);
-}
-
-// User leaves chat
-function userLeave(id) {
-  const index = users.findIndex(user => user.id === id);
-
-  if (index !== -1) {
-    return users.splice(index, 1)[0];
+// let event=new Event('click')
+chatForm.addEventListener('keyup',(e) => {
+  if (e.code==='Enter'){
+    submitbtn.dispatchEvent(new Event('click'));
   }
+})
+// // chatForm.addEventListener('submit', e => {
+// submitbtn.addEventListener('click', e => {
+//   // e.preventDefault();
+
+//   // Get message text
+//   // let msg = e.target.elements.msg.value;
+//   let msg = document.getElementById('msg').value;
+//   msg = msg.trim();
+
+//   if (!msg) {
+//     return false;
+//   }
+
+//   const color = localStorage.getItem('color');
+//   // Emit message to server
+//   socket.emit('chatMessage', { msg, color });
+
+//   // Clear input
+//   document.getElementById('msg').value = '';
+//   document.getElementById('msg').focus();
+// });
+
+
+// Output message to DOM
+function outputMessage(message, cssClassType) {
+  // const msgcont=document.createElement('div');
+  // msgcont.classList.add('message-cont');
+  let color = localStorage.getItem('color')
+  const msgdiv = document.createElement('div');
+  msgdiv.classList.add('message');
+  msgdiv.classList.add(cssClassType);
+  const msgcontent = document.createElement('span');
+  if (cssClassType != 'system') {
+    msgcontent.setAttribute('style', `background-color:${message.color};opacity: .9;padding:2px;border-radius:5px`)
+  }
+  msgcontent.classList.add('text');
+  msgcontent.innerHTML = `${message.text}<br>`;
+  msgdiv.appendChild(msgcontent);
+
+  if (cssClassType != 'system') {
+    // msgdiv.setAttribute('style', `background-color:${message.color}`)
+    const user = document.createElement('span');
+    user.classList.add('user');
+    user.innerText = message.username;
+    msgdiv.appendChild(user);
+  }
+
+  // msgcont.appendChild(msgdiv);
+  document.querySelector('.chat-logs').appendChild(msgdiv);
 }
 
-// Get room users
-function getRoomUsers(room) {
-  return users.filter(user => user.room === room);
+
+function getUsername() {
+  let name = (Math.random().toString(36).substr(2, 7)).toString();
+  let token=localStorage.getItem('access_token')
+  let username = '';
+  if (token) {
+    username = localStorage.getItem('username');
+  } else {
+    username = name;
+    localStorage.setItem('username',username);
+  }
+  console.log(username)
+  return username;
+};
+
+function sendMsg(){
+  let msg = document.getElementById('msg').value;
+  msg = msg.trim();
+  if (!msg) {return false;}
+
+  const color = localStorage.getItem('color');
+  // Emit message to server
+  socket.emit('chatMessage', { msg, color });
+
+  // Clear input
+  document.getElementById('msg').value = '';
+  document.getElementById('msg').focus();
 }
 
-
-
-//-----------------------------------------------------------------------------
-const moment = require('moment');
-
-function formatMessage(username, text) {
-  return {
-    username,
-    text,
-    time: moment().format('h:mm a')
-  };
-}
-
-module.exports = formatMessage;

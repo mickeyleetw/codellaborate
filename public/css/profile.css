@@ -1,102 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 .userinfo{
   margin-top: 70px!important;
-}
-.snip1522 {
-  font-family: 'Open Sans', Arial, sans-serif;
-  position: relative;
-  /* margin: 10px; */
-  min-width: 230px;
-  max-width: 340px;
-  width: 100%;
-  color: #141414;
-  text-align: left;
-  line-height: 1.4em;
-  font-size: 14px;
-  box-shadow: none !important;
-}
-
-.snip1522 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.snip1522 .profile-image {
-  width: 26%;
-}
-
-.snip1522 .profile-image img {
-  border-radius: 5px;
-  max-width: 100%;
-  vertical-align: top;
-}
-
-.snip1522 .profile-image,
-.snip1522 figcaption {
-  float: right;
-}
-
-.snip1522 figcaption {
-  width: 70%;
-  background-color: #333333;
-  color: #fff;
-  padding: 25px;
-  display: inline-block;
-  margin-right: 4%;
-  border-radius: 5px;
-}
-
-.snip1522 figcaption:after {
-  content: '';
-  position: absolute;
-  left: 70%;
-  top: 30px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #333333;
-}
-
-.snip1522 h3,
-.snip1522 h4,
-.snip1522 p {
-  margin: 0 0 5px;
-}
-
-.snip1522 h3 {
-  font-weight: 600;
-  font-size: 1.2em;
-  font-family: 'Montserrat', Arial, sans-serif;
-}
-
-.snip1522 h4 {
-  color: #8c8c8c;
-  font-weight: 400;
-  letter-spacing: 2px;
-   font-size: 1.2em;
-}
-
-.snip1522 p {
-  font-size: 0.9em;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
-
-.snip1522 .icons {
-  text-align: center;
-  width: 100%;
-}
-
-.snip1522 i {
-  padding: 10px 2px;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: normal;
-  color: #ffffff;
-  /* opacity: 0.75; */
 }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
@@ -138,4 +41,109 @@ tbody tr:hover {
   background: #333333;
 }
 
+.userfile{
+  width:auto!important;
+}
 
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+.snip1568 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 14px;
+  box-shadow: none !important;
+}
+
+.snip1568 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.snip1568 .profile-image img {
+  border-radius: 5px;
+  max-width: 100%;
+  height: 80px;
+  vertical-align: top;
+  float: right;
+}
+
+.snip1568 figcaption {
+  width: auto;
+  background-color: #333333;
+  color: #fff;
+  padding: 18px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.snip1568 figcaption:after {
+  content: '';
+  position: absolute;
+  right: 32px;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #333333 transparent transparent transparent;
+}
+
+.snip1568 h3,
+.snip1568 h4,
+.snip1568 p {
+  margin: 0 0 5px;
+}
+
+.snip1568 h3 {
+  font-weight: 600;
+  font-size: 1.2em;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.snip1568 h4 {
+  color: #8c8c8c;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 1.2rem!important;
+}
+
+.snip1568 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.snip1568 .icons {
+  padding: 20px 90px;
+}
+
+.snip1568 i {
+  padding: 10px 2px;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  color: #ffffff;
+  opacity: 0.75;
+}
+
+.snip1568 i:hover {
+  opacity: 1;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+/* Demo purposes only */
+body {
+  background-color: #212121;
+}

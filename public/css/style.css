@@ -34,7 +34,7 @@ body {
 .editor{
   background: #222!important;
   margin: 50px;
-  /* margin-right: 50px; */
+  margin-bottom: 10px;
 }
 
 .cm-s-monokai.CodeMirror {
@@ -65,9 +65,32 @@ body {
   background-color: #222!important;
 }
 
+.fasa:focus{
+  outline: none;
+}
+
 a:hover{text-decoration:none!important;}
 
+.res-cont{
+  /* padding:5px; */
+  margin-left: 36px!important;
+  margin-right: 0px!important;
+  padding-right: 0px!important;
+}
 
+.output{
+  padding:5px;
+  border: 1px solid #fff;
+  margin-left: 1px!important;
+}
+
+.copy{
+  display: inline-block;
+}
+
+i.fas.fa-comment.fa-4x {
+  -webkit-transform: scaleX(-1);
+}
 /* textarea{
     width:100%;
     height: 70vh;
@@ -92,7 +115,6 @@ a:hover{text-decoration:none!important;}
 .portfolio-item {
   margin-bottom: 30px;
 }
-
 
 
 .remote-caret {
@@ -181,67 +203,35 @@ a:hover{text-decoration:none!important;}
     box-shadow: inset 0 -9.5px 0 0 #38383d;
   }
 
-
+/* 
   html, body {
     background: #efefef;      
     height:100%;  
-  }
-  #center-text {          
-    display: flex;
-    flex: 1;
-    flex-direction:column; 
-    justify-content: center;
-    align-items: center;  
-    height:100%;
-    
-  }
+  } */
+
   #chat-circle {
     position: fixed;
-    bottom: 50px;
-    right: 50px;
-    background: #5A5EB9;
-    width: 80px;
-    height: 80px;  
-    border-radius: 50%;
-    color: white;
-    padding: 28px;
+    bottom: 80px;
+    right: 80px;
+    width: 60px;
+    height: 60px;  
+    color: #ffcc00;
     cursor: pointer;
-    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }
-  
-  .btn#my-btn {
-       background: white;
-      padding-top: 13px;
-      padding-bottom: 12px;
-      border-radius: 45px;
-      padding-right: 40px;
-      padding-left: 40px;
-      color: #5865C3;
-  }
-  #chat-overlay {
-      background: rgba(255,255,255,0.1);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      display: none;
-  }
-  
+
   
   .chat-box {
+    z-index: 1031;
     display:none;
     background: #efefef;
     position:fixed;
     right:30px;
     bottom:50px;  
     width:350px;
+    /* height:30px; */
     max-width: 85vw;
-    max-height:100vh;
-    border-radius:5px;  
-  /*   box-shadow: 0px 5px 35px 9px #464a92; */
-    box-shadow: 0px 5px 35px 9px #ccc;
+    /* max-height:90vh; */
+    border-radius:10px;  
   }
   .chat-box-toggle {
     float:right;
@@ -249,25 +239,25 @@ a:hover{text-decoration:none!important;}
     cursor:pointer;
   }
   .chat-box-header {
-    background: #5A5EB9;
-    height:70px;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px; 
-    color:white;
+    background: #ffcc00;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px; 
+    color:#222;
     text-align:center;
     font-size:20px;
-    padding-top:17px;
   }
   .chat-box-body {
-    position: relative;  
+    position: relative;
+    background: #222!important;  
     height:370px;  
     height:auto;
-    border:1px solid #ccc;  
     overflow: hidden;
+    border-left:5px solid #F5F5F5;
+
   }
   .chat-box-body:after {
     content: "";
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgOCkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgY3g9IjE3NiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTIwLjUuNWwyMyAxMW0tMjkgODRsLTMuNzkgMTAuMzc3TTI3LjAzNyAxMzEuNGw1Ljg5OCAyLjIwMy0zLjQ2IDUuOTQ3IDYuMDcyIDIuMzkyLTMuOTMzIDUuNzU4bTEyOC43MzMgMzUuMzdsLjY5My05LjMxNiAxMC4yOTIuMDUyLjQxNi05LjIyMiA5LjI3NC4zMzJNLjUgNDguNXM2LjEzMSA2LjQxMyA2Ljg0NyAxNC44MDVjLjcxNSA4LjM5My0yLjUyIDE0LjgwNi0yLjUyIDE0LjgwNk0xMjQuNTU1IDkwcy03LjQ0NCAwLTEzLjY3IDYuMTkyYy02LjIyNyA2LjE5Mi00LjgzOCAxMi4wMTItNC44MzggMTIuMDEybTIuMjQgNjguNjI2cy00LjAyNi05LjAyNS0xOC4xNDUtOS4wMjUtMTguMTQ1IDUuNy0xOC4xNDUgNS43IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTg1LjcxNiAzNi4xNDZsNS4yNDMtOS41MjFoMTEuMDkzbDUuNDE2IDkuNTIxLTUuNDEgOS4xODVIOTAuOTUzbC01LjIzNy05LjE4NXptNjMuOTA5IDE1LjQ3OWgxMC43NXYxMC43NWgtMTAuNzV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjcxLjUiIGN5PSI3LjUiIHI9IjEuNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjE3MC41IiBjeT0iOTUuNSIgcj0iMS41Ii8+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iODEuNSIgY3k9IjEzNC41IiByPSIxLjUiLz48Y2lyY2xlIGZpbGw9IiMwMDAiIGN4PSIxMy41IiBjeT0iMjMuNSIgcj0iMS41Ii8+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTkzIDcxaDN2M2gtM3ptMzMgODRoM3YzaC0zem0tODUgMThoM3YzaC0zeiIvPjxwYXRoIGQ9Ik0zOS4zODQgNTEuMTIybDUuNzU4LTQuNDU0IDYuNDUzIDQuMjA1LTIuMjk0IDcuMzYzaC03Ljc5bC0yLjEyNy03LjExNHpNMTMwLjE5NSA0LjAzbDEzLjgzIDUuMDYyLTEwLjA5IDcuMDQ4LTMuNzQtMTIuMTF6bS04MyA5NWwxNC44MyA1LjQyOS0xMC44MiA3LjU1Ny00LjAxLTEyLjk4N3pNNS4yMTMgMTYxLjQ5NWwxMS4zMjggMjAuODk3TDIuMjY1IDE4MGwyLjk0OC0xOC41MDV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxwYXRoIGQ9Ik0xNDkuMDUgMTI3LjQ2OHMtLjUxIDIuMTgzLjk5NSAzLjM2NmMxLjU2IDEuMjI2IDguNjQyLTEuODk1IDMuOTY3LTcuNzg1LTIuMzY3LTIuNDc3LTYuNS0zLjIyNi05LjMzIDAtNS4yMDggNS45MzYgMCAxNy41MSAxMS42MSAxMy43MyAxMi40NTgtNi4yNTcgNS42MzMtMjEuNjU2LTUuMDczLTIyLjY1NC02LjYwMi0uNjA2LTE0LjA0MyAxLjc1Ni0xNi4xNTcgMTAuMjY4LTEuNzE4IDYuOTIgMS41ODQgMTcuMzg3IDEyLjQ1IDIwLjQ3NiAxMC44NjYgMy4wOSAxOS4zMzEtNC4zMSAxOS4zMzEtNC4zMSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=');
+    background:#222!important;
     opacity: 0.1;
     top: 0;
     left: 0;
@@ -277,11 +267,11 @@ a:hover{text-decoration:none!important;}
     position: absolute;
     z-index: -1;   
   }
-  #chat-input {
-    background: #f4f7f9;
+  #msg {
+    background: #F5F5F5;
     width:100%; 
     position:relative;
-    height:47px;  
+    height:40px;  
     padding-top:10px;
     padding-right:50px;
     padding-bottom:10px;
@@ -289,11 +279,11 @@ a:hover{text-decoration:none!important;}
     border:none;
     resize:none;
     outline:none;
-    border:1px solid #ccc;
-    color:#888;
+    border:1px solid #F5F5F5;
+    color:#222;
     border-top:none;
-    border-bottom-right-radius:5px;
-    border-bottom-left-radius:5px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
     overflow:hidden;  
   }
   .chat-input > form {
@@ -313,20 +303,19 @@ a:hover{text-decoration:none!important;}
   }
   .chat-submit {  
     position:absolute;
-    bottom:3px;
+    bottom:5px;
     right:10px;
-    background: transparent;
-    box-shadow:none;
     border:none;
     border-radius:50%;
-    color:#5A5EB9;
     width:35px;
     height:35px;  
   }
   .chat-logs {
     padding:15px; 
-    height:370px;
+    height:350px;
     overflow-y:scroll;
+    display: flex;
+    flex-direction: column;
   }
   
   .chat-logs::-webkit-scrollbar-track
@@ -343,7 +332,7 @@ a:hover{text-decoration:none!important;}
   
   .chat-logs::-webkit-scrollbar-thumb
   {
-    background-color: #5A5EB9;
+    background-color: #ffcc00;
   }
   
   
@@ -385,7 +374,7 @@ a:hover{text-decoration:none!important;}
   .chat-msg.self > .cm-msg-text {  
     float:right;
     margin-right:10px;
-    background: #5A5EB9;
+    background: #ffcc00;
     color:white;
   }
   .cm-msg-button>ul>li {
@@ -397,3 +386,57 @@ a:hover{text-decoration:none!important;}
       clear: both;
       margin-bottom: 70px;
   }
+
+.self {
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 400px;
+    /* background-color:rgba(102, 160, 102, 0.438); */
+}
+
+.others {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px;
+}
+
+.system {
+  align-self: center;
+  max-width: 400px;
+  /* background-color:rgba(255, 204, 0, 0.438); */
+}
+
+.user{
+  font-size: small;
+  text-align: left;
+}
+
+.message{
+  border-radius: 5px;
+  padding: 3px;
+  margin:2px;
+}
+
+.clipboard{
+  background:transparent;
+  outline:none;
+  color:#ffcc00;;
+  border: none;
+}
+
+
+.clipboard:hover{
+  outline: none;
+  background-color:#ffcc00; 
+  color:black
+}
+
+.clipboard:active{
+  outline: none;
+  background-color:#222; 
+  color:white
+}

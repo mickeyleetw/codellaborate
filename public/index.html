@@ -7,6 +7,8 @@
   <link rel="stylesheet" type="text/css" href="css/styleindex.css" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/f6250eb155.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <title>CODELLABORATE</title>
 </head>
 
@@ -14,18 +16,20 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <i class="fa fa-code"></i>
       <a class="navbar-brand" href="index.html">CODELLABORATE</a>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
+            <button class="nav-link button1" id="neweditor"><i class="fas fa-file-code"> NEW EDITOR</i></button>
           </li>
           <li class="nav-item" id='signin'>
-            <button class="nav-link button1"><a href="signuplogin.html">SIGN UP/ LOG IN</a></button>
+            <button class="nav-link button1"><a href="./signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG IN</i></a></button>
           </li>
           <li class="nav-item" id="signout" style="display: none">
-            <button class="nav-link button1"><a href="profile.html">PROFILE/ LOG OUT</a></button>
+            <button class="nav-link button1"><a href="profile.html"><i class="fas fa-address-card"> PROFILE</i></a></button>
+          </li>
+          <li class="nav-item" id="logout" style="display: none">
+            <button class="nav-link button1"><i class="fas fa-sign-out-alt"> LOG OUT</i></button>
           </li>
         </ul>
       </div>
@@ -33,14 +37,18 @@
   </nav>
 
   <header>
-            <div id="pane">
-              <br><br>
-              <p>These are the days of our lives.</p>
-              <p>wait a few seconds for it...</P>
-              <br>
-              <br><br><br><br><br><br><br><br><br><br><br><br>
-              <button class="create" id="createneweditor"><h2>CREATE NEW EDITOR</h2></button>
-            </div>
+    <div id="pane" class="container2">
+      <br>
+      <h3 class='indextext'>These are the days of our lives.<br>
+      <!-- <p class='indextext'> -->
+       wait a few seconds for it...</h3>
+      <br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <button class="create" id="createneweditor">
+        <h4 style="text-align: left;">CLICK TO CODE..</h4>
+        <!-- <h4>CREATE NEW EDITOR</h4> -->
+      </button>
+    </div>
   </header>
   <div class="container">
   </div>

@@ -3,6 +3,7 @@ let urlcurrent = (new URL(document.location))
 console.log(urlcurrent)
 document.getElementById('neweditor').addEventListener('click', newEditor);
 document.getElementById('createneweditor').addEventListener('click', newEditor);
+document.getElementById('logout').addEventListener('click',signout)
 chklogin();
 // FetchDetails(id, rednerDetails);
 
@@ -45,5 +46,13 @@ async function chklogin() {
         signin.setAttribute("style", "display:none");
         let signout = document.getElementById('signout');
         signout.setAttribute("style", "display:true");
+        let logout = document.getElementById('logout');
+        logout.setAttribute("style", "display:true");
     }
+}
+// -------------------------------------------------------------------------
+function signout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+    window.location.href = "./index.html"
 }

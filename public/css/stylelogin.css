@@ -34,7 +34,7 @@
   right:0;
   margin-right: 3%;
   margin-left: 3%;
-  transition: right .8s ease-in-out;
+  transition: right 1.2s ease-in-out;
 }
 
 .moving{
@@ -132,7 +132,7 @@
 
 .loginMsg, .signupMsg{
   /*opacity: 1;*/
-  transition: opacity .8s ease-in-out;
+  transition: opacity 1.2s ease-in-out;
 }
 
 .visibility{

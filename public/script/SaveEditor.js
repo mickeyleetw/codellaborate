@@ -14,7 +14,7 @@ function checkStatus(response) {
 async function saveEditor() {
     // const token = localStorage.getItem('access_token');
     // const currentHTML = document.documentElement.outerHTML;
-    const code=getCode();
+    const code = getCode();
     const editorURL = document.location.href;
     const title = document.getElementById('filename').value;
     console.log(title);
@@ -44,28 +44,41 @@ async function saveEditor() {
             },
             body: JSON.stringify(pilecontent)
         })
-        alert('Editor Saved')
+        swal({
+            title: "Editor Saved",
+            icon: "success",
+        })
+        // alert('Editor Saved')
     } else {
-        alert('Please Sign In First')
+        swal({
+            title: "Please Sign In First",
+            icon: "error",
+        })
+        // alert('Please Sign In First')
     }
 }
 // -----------------------------Get Code--------------------------------------------
 function getCode() {
     let codecontent = document.getElementsByClassName('CodeMirror-line');
     let num = codecontent.length;
-    code = [];
-    for (i = 0; i < num; i++) {
-        let lineText = codecontent[i].innerText;
-        let endpoint = lineText[Number(lineText.length - 1)];
-        let chkconsole=lineText
-        // console.log(endpoint);
-        if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
-        // if (endpoint != ';') {
+    let code = '';
+    if (num != 0) {
+        for (i = 0; i < num; i++) {
+            let lineText = codecontent[i].innerText;
+            let endpoint = lineText[Number(lineText.length - 1)];
+            let chkconsole = lineText
+            // console.log(endpoint);
+            if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
+            // if (endpoint != ';') {
             lineText = lineText + '\n';
             // console.log(lineText);
-        // }
-        code += lineText;
-        console.log(code); 
+            // }
+            code += lineText;
+            console.log(code);
+        }
+    }
+    else {
+        code = '';
     }
     console.log(code);
     return code;

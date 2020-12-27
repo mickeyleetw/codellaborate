@@ -2,15 +2,16 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-const fs = require('fs');
 const io = require('socket.io')(http);
+const fs = require('fs');
 const bodyParser = require('body-parser'); 
 const fetch = require('node-fetch');
 const functions = require('./util/functions');
 const ejs = require('ejs');
 
 const socketListener=require('./server/socket/socket_manager.js')
-io.on('connection', socketListener);
+socketListener.socketListener(io)
+// io.on('connection', socketListener.socketListener);
 
 functions.connectDB();
 
@@ -50,7 +51,7 @@ app.use((err, req, res, next) => {
 
 
 // Setup Port
-const port = 3000;
+const port = 3001;
 http.listen(port, () => {
     console.log(`Server on port ${port} is ready!`);
 })

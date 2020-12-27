@@ -1,7 +1,7 @@
 const fs = require('fs');
 const url = require('url');
 const express = require('express');
-const moment = require('moment');
+const moment = require('moment-timezone');
 const childProcess = require('child_process')
 const functions = require('../../util/functions');
 const router = express.Router();
@@ -31,18 +31,9 @@ router.get('/:id', async (req, res) => {
     let result = (await functions.sqlquery(sqlu, editorId));
     console.log(result);
     if (result.length > 0) {
-        // const sql = 'SELECT * FROM userFile where fileID=?';
-        // let resultF = (await functions.sqlquery(sql, editorId));
-        // if(resultF.length!=0){
-        //     // res.redirect(`./${editorId}.html`);
-        //     res.render('ogfsf1');
-        // }else{
         res.render('neweditor');
-        // }
-
     } else {
         res.render('404')
-        // res.send('EDITOR NOT EXIST!')
     }
 })
 // --------------------Run Code-----------------------------------------------------
@@ -86,14 +77,6 @@ router.post('/saveEditor', async (req, res) => {
     const title = req.body.filename;
     const currentTime = GetTime();
     console.log(editorID);
-
-    // try {
-    //     let resultFile = await writeHTML(currentHTML, editorID);
-    //     console.log(resultFile);
-    // } catch (err) {
-    //     console.log(err);
-    // }
-    // userEditor Arr
     const userEditor = {
         'userID': userID,
         'title': title,
@@ -104,12 +87,13 @@ router.post('/saveEditor', async (req, res) => {
 
     const chkfileID = 'SELECT userID,fileID FROM userFile where fileID=?;'
     let searchresult = await functions.sqlquery(chkfileID, editorID);
-    console.log(searchresult)
+    // console.log(searchresult)
     if (searchresult.length != 0) {
-        const sqluserPile = `UPDATE userFile SET title=?,saveTime = ? code=? where fileID = ?`;
+        const sqluserPile = `UPDATE userFile SET title=?,saveTime = ?, code=? where fileID = ?`;
         let saveResult = await functions.sqlquery(sqluserPile, [title, currentTime, code, editorID]);
+        console.log(saveResult);
         const result = searchresult.find(x => x.userID == userID);
-        // console.log(result);
+        console.log(result);
         if (result == undefined) {
             const sqluserPile = 'INSERT INTO `userFile` SET ?';
             let saveResult = await functions.sqlquery(sqluserPile, userEditor);
@@ -131,9 +115,11 @@ router.post('/usereditor', async (req, res) => {
     console.log(searchresult)
     if (searchresult.length != 0) {
         const code = searchresult[0].code;
+        const title = searchresult[0].title;
         const returnArr = {
             "status": "Exist",
-            "code": code
+            "code": code,
+            "title": title
         };
         return res.json(returnArr);
         // return res.redirect(`./pile/${editorID}.html`);
@@ -141,7 +127,8 @@ router.post('/usereditor', async (req, res) => {
     else {
         const returnArr = {
             "status": "Non-Exist",
-            "code": null
+            "code": null,
+            "title": null
         };
         return res.json(returnArr);
     }
@@ -181,7 +168,7 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
             console.log("start to kill");
             workerProcess.exitCode = 1;
             console.log(`This is exit reject code: ${workerProcess.exitCode}`)
-            reject("This code run too long");
+            reject("This code runs too long");
         }, timeLimit)
 
         workerProcess.on("exit", () => {
@@ -207,8 +194,11 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
 
 // -------------------------------------------------------------------------
 function GetTime() {
-    const timestamp = moment().format();
-    const currentTime = moment(timestamp).format('YYYY-MM-DDTHH:mm:ss.SSS');
+    // const timestamp = moment().format();
+    const timestamp=Date.now();
+    const currentTime = moment(timestamp).tz("Asia/Taipei").format('YYYY-MM-DD HH:mm:ss');
+    console.log('QQ'+timestamp)
+    console.log(currentTime);
     return currentTime;
 }
 // -------------------------------------------------------------------------

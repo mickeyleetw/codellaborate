@@ -113,7 +113,7 @@ let urlcurrent = (new URL(document.location));
 // console.log(urlcurrent);
 // let editorId=urlcurrent.searchParams.get('id');
 let editorId=urlcurrent.pathname.split('/')[2]
-console.log(editorId);
+// console.log(editorId);
 // console.log('QQ');
 
 
@@ -121,27 +121,58 @@ console.log(editorId);
 
 window.addEventListener('load', () => {
   function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+      let lum = -0.25;
+      var hex = String('#' + Math.random().toString(16).slice(2, 8).toUpperCase()).replace(/[^0-9a-f]/gi, '');
+      if (hex.length < 6) {
+          hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
+      var rgb = "#",
+          c, i;
+      for (i = 0; i < 3; i++) {
+          c = parseInt(hex.substr(i * 2, 2), 16);
+          c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+          rgb += ("00" + c).substr(c.length);
+      }
+      localStorage.setItem('color',rgb);
+      console.log()
+      return rgb;
+  };
+    // var letters = '0123456789ABCDEF';
+    // var color = '#';
+    // for (var i = 0; i < 6; i++ ) {
+    //     color += letters[Math.floor(Math.random() * 16)];
+    // }
+    // localStorage.setItem('color',color);
+    // console.log(color);
+    // return color;
+  // };
+
+
+  
+// var getRandomColor = function() {
+// 	return '#' +
+// 		(function(color) {
+// 			return(color += '5678956789defdef' [Math.floor(Math.random() * 16)]) &&
+// 				(color.length == 6) ? color : arguments.callee(color);
+// 		})('');
+// }
+// 
   
 
-  function getUsername(){
-    let name=(Math.random().toString(36).substr(2, 7)).toString();
-    let username='';
-    if(localStorage.getItem('username')){
-      username=localStorage.getItem('username');
-    }else{
-      username=name;
-    }
-    console.log(username)
-    return username;
-
-};
+//   function getUsername(){
+//     let name=(Math.random().toString(36).substr(2, 7)).toString();
+//     let username='';
+//     let token=localStorage.getItem('access_token')
+//     if (token) {
+//       username = localStorage.getItem('username');
+//     } else {
+//       username = name;
+//       localStorage.setItem('username',username);
+//     }
+//     console.log(username)
+//     return username;
+// };
+let username=localStorage.getItem('username')
 
 
   // let room=(Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3))
@@ -183,7 +214,7 @@ window.addEventListener('load', () => {
 
   // @ts-ignore
   window.example = { provider, ydoc, yText, binding, Y: yjs__WEBPACK_IMPORTED_MODULE_1__ }
-  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name: getUsername() })
+  example.binding.awareness.setLocalStateField('user', { color: getRandomColor(), name: username })
 })
 
 

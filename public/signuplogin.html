@@ -19,7 +19,9 @@
   <link rel="stylesheet" type="text/css" href="css/stylelogin.css" />
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
-  integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f6250eb155.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -33,13 +35,11 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <button class="nav-link button1" id="neweditor">NEW EDITOR</button>
+            <button class="nav-link button1" id="neweditor"><i class="fas fa-file-code"> NEW EDITOR</i></button>
           </li>
           <li class="nav-item" id='signin'>
-            <button class="nav-link button1"><a href="signuplogin.html">SIGN UP/ LOG IN</a></button>
-          </li>
-          <li class="nav-item" id="signout" style="display: none">
-            <button class="nav-link button1"><a href="profile.html">PROFILE/ LOG OUT</a></button>
+            <button class="nav-link button1"><a href="./signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG
+                  IN</i></a></button>
           </li>
         </ul>
       </div>
@@ -80,7 +80,7 @@
         <h2>SIGN UP</h2>
         <div class="inputbox">
           <input type="text" name="fullname" id="exampleInputName2" placeholder="  FULLNAME">
-          <input type="email" name="email"  id="exampleInputEmail2" placeholder="  EMAIL">
+          <input type="email" name="email" id="exampleInputEmail2" placeholder="  EMAIL">
           <input type="password" name="password" id="exampleInputPassword2" placeholder="  PASSWORD">
         </div>
         <button id="signup">SIGN UP</button>
@@ -96,7 +96,7 @@
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div> -->
-    <!-- /.container -->
+  <!-- /.container -->
   <!-- </footer> -->
 
   <!-- Bootstrap core JavaScript -->
