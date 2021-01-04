@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">CODELLABORATE</a>
@@ -22,21 +21,22 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <button class="nav-link button1" id="neweditor"><i class="fas fa-file-code"> NEW EDITOR</i></button>
-                      </li>
-                      <li class="nav-item" id='signin'>
-                        <button class="nav-link button1"><a href="./signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG IN</i></a></button>
-                      </li>
-                      <li class="nav-item" id="signout" style="display: none">
-                        <button class="nav-link button1"><a href="profile.html"><i class="fas fa-address-card"> PROFILE</i></a></button>
-                      </li>
-                      <li class="nav-item" id="logout" style="display: none">
+                    </li>
+                    <li class="nav-item" id='signin'>
+                        <button class="nav-link button1"><a href="./signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN
+                                    UP/ LOG IN</i></a></button>
+                    </li>
+                    <li class="nav-item" id="signout" style="display: none">
+                        <button class="nav-link button1"><a href="profile.html"><i class="fas fa-address-card">
+                                    PROFILE</i></a></button>
+                    </li>
+                    <li class="nav-item" id="logout" style="display: none">
                         <button class="nav-link button1"><i class="fas fa-sign-out-alt"> LOG OUT</i></button>
-                      </li>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Page Content -->
     <div class="container">
 
@@ -45,62 +45,37 @@
             <div class="col-md-8 userfile">
                 <table>
                     <thead>
-                      <tr>
-                        <th>TITLE
-                        <th>CREATE TIME
-                        <th>FILE ID
-                        <th>VIEW
+                        <tr>
+                            <th>TITLE
+                            <th>CREATE TIME
+                            <th>FILE ID
+                            <th>VIEW
                     </thead>
                     <tbody id="userfile">
                     </tbody>
-                  </table>
+                </table>
             </div>
+
             <div class="col-md-4">
                 <figure class="snip1568">
                     <figcaption>
-                      <h4 id='name'></h4>
-                      <h4 id='email'></h4>
+                        <h4 id='name'></h4>
+                        <h4 id='email'></h4>
                     </figcaption>
                     <div class="profile-image"><img src='./img/thumb.jpg' alt="profile-sample2" />
                     </div>
-                  </figure>
+                </figure>
             </div>
         </div>
-        <!-- /.row -->
-
-        <!-- Related Projects Row -->
-        <div class="row">
-            <div class="col-md-3 col-sm-6 mb-4">
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-            </div>
-
-            <div class="col-md-3 col-sm-6 mb-4">
-            </div>
-        </div>
-        <!-- /.row -->
-
     </div>
-    <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="py-5">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CODELLABORATE 2020</p>
-        </div>
-        <!-- /.container -->
-    </footer>
-
+    <div id="pagefooter"></div>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="script/header.js"></script>
+    <script type="text/javascript" src="script/footer.js"></script>
     <script type="text/javascript" src="script/profile.js"></script>
-    
-
 </body>
 
 </html>

@@ -12,12 +12,8 @@
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
   <link rel="stylesheet" type="text/css" href="../css/styleindex.css" />
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
   <title>CODELLABORATE</title>
 </head>
 
@@ -32,10 +28,12 @@
             <button class="nav-link button1" id="neweditor"><i class="fas fa-file-code"> NEW EDITOR</i></button>
           </li>
           <li class="nav-item" id='signin'>
-            <button class="nav-link button1"><a href="../signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG IN</i></a></button>
+            <button class="nav-link button1"><a href="../signuplogin.html"><i class="fas fa-sign-in-alt"> SIGN UP/ LOG
+                  IN</i></a></button>
           </li>
           <li class="nav-item" id="signout" style="display: none">
-            <button class="nav-link button1"><a href="../profile.html"><i class="fas fa-address-card"> PROFILE</i></a></button>
+            <button class="nav-link button1"><a href="../profile.html"><i class="fas fa-address-card">
+                  PROFILE</i></a></button>
           </li>
           <li class="nav-item" id="logout" style="display: none">
             <button class="nav-link button1"><i class="fas fa-sign-out-alt"> LOG OUT</i></button>
@@ -47,39 +45,16 @@
 
   <header class="editor">
     <i class="far fa-play-circle" id="button" type="submit">Run</i>&nbsp;&nbsp;&nbsp;&nbsp;
-    <!-- <button class="runcode" type="submit" id="button"><i class="far fa-play-circle"></i>RUN</button> -->
-    <!-- <a id='y-connect-btn'><i class="fas fa-toggle-off" type="submit">Disconnect</i></a>&nbsp;&nbsp; -->
     <button type="button" id="y-connect-btn" class="fasa">Disconnect</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="input">
       <input type="text" id="filename" required />
       <a>Title</a>
     </div>
-    <!-- <label for="filename">Title</label>
-        <input type="text" id="filename"> -->
     <textarea id="editor"></textarea>
-    <!-- <h1 class="display-3">A Warm Welcome!</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-        <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
     <i class="far fa-save fa-1.9x" type="button" id="save-btn">&nbsp;Save Editor</i>&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="copy">
       <button class="clipboard">Click to Copy URL</button>
-      <!-- <span class='copytext'>clicked?</span> -->
     </div>
-    <!-- <div class="copy-link">
-      <span class="copy-link-icon">icon</span>
-      <div class="copy-link-inner">
-        <form data-copy=true>
-          <input type="text" value="somascope.com/flexbox/" data-click-select-all />
-          <input type="submit" value="Copy" />
-        </form>
-      </div>
-    </div> -->
-    <!-- <a class="code-sharing">
-        <span class="link-to-share ng-binding">Link to share</span>
-            <input type="text" id="code-sharing" class="code-link ng-pristine ng-untouched ng-valid" readonly="">
-            <span class="label no-padding clip-copy"></span>
-        </a> -->
-    <!-- <button type="button" id="save-btn">Save This Editor</button> -->
   </header>
 
   <!-- Page Content -->
@@ -88,14 +63,10 @@
       <h3>Running Result:</h3>
       <div id="consoleResult"></div>
     </div>
-    <!-- Marketing Icons Section -->
-    <!-- <div class="row output"></div> -->
-
     <div id="body">
 
       <div id="chat-circle" class="btn btn-raised">
         <div id="chat-overlay"></div>
-        <!-- <i class="material-icons"></i> -->
         <i class="fas fa-comment fa-4x"></i>
       </div>
 
@@ -105,10 +76,6 @@
           <span class="chat-box-toggle"><i class="fas fa-times"></i></span>
         </div>
         <div class="chat-box-body">
-          <!-- <div class="chat-sidebar">
-        <h3><i class="fas fa-users"></i> Users</h3>
-        <ul id="users"></ul>
-      </div> -->
           <div class="chat-box-overlay">
           </div>
           <div class="chat-logs">
@@ -123,34 +90,20 @@
           </div>
         </div>
       </div>
-
-
-
-
     </div>
-    <!-- /.row -->
-    <!-- /.row -->
-    <!-- /.row -->
 
   </div>
-  <!-- /.container -->
-  <!-- <script src="../script/index.js"></script> -->
-  <!-- <script src="../script/neweditor.js"></script> -->
   <script type="text/javascript" src="../dist/codemirror.bundle.js"></script>
   <script type="text/javascript" src="../socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="../script/RunCode.js"></script>
-  <script type="text/javascript" src="../script/SaveEditor.js"></script>
+  <script type="text/javascript" src="../script/header.js"></script>
   <script type="text/javascript" src="../script/neweditor.js"></script>
   <script type="text/javascript" src="../script/chatroomService.js"></script>
-  <!-- Footer -->
   <footer class="py-5">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; CODELLABORATE 2020</p>
     </div>
-    <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

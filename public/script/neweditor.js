@@ -1,39 +1,9 @@
-chklogin();
+let host = document.location.origin;
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('neweditor').addEventListener('click', newEditor);
-    document.getElementById('logout').addEventListener('click',signout)
     loadCODE();
+    document.getElementById('button').addEventListener('click', testcode);
+    document.getElementById('save-btn').addEventListener('click', saveEditor)
 })
-//--------------------------------------------------------------------------
-async function chklogin() {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-        const resFromProfile = await fetch('/user/profile', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const jsonFromProfile = await checkStatus(resFromProfile);
-        // const user = jsonFromProfile.data;
-        // userProfile(user);
-        let signin = document.getElementById('signin');
-        signin.setAttribute("style", "display:none");
-        let signout = document.getElementById('signout');
-        signout.setAttribute("style", "display:true");
-        let logout = document.getElementById('logout');
-        logout.setAttribute("style", "display:true");
-    }
-}
-//--------------------------------------------------------------------------
-function checkStatus(response) {
-    if (response.ok) {
-        return Promise.resolve(response.json());
-        console.log(response);
-    } else {
-        return Promise.reject(new Error(response.statusText));
-    }
-}
 //--------------------------------------------------------------------------
 async function loadCODE() {
     const editorId = document.location.pathname.split('/')[2];
@@ -43,16 +13,10 @@ async function loadCODE() {
         body: JSON.stringify({ "editorID": editorId })
     });
     const jsonFromchk = await checkStatus(resFromchk);
-    // console.log(jsonFromchk)
     let code = jsonFromchk.code;
     let title = jsonFromchk.title;
-    console.log(title);
     let ipttitle = document.getElementById('filename');
-    let codecontent = document.getElementsByClassName('CodeMirror-line');
-    let num = codecontent.length;
-    let lineText = codecontent[0].innerText;
 
-    // let close = getCode();
     if (jsonFromchk.status === 'Exist') {
         ipttitle.setAttribute('value', title);
         // if (close.length == 0) {
@@ -68,34 +32,130 @@ async function loadCODE() {
         // }
     }
 }
-// -----------------------------Get Code--------------------------------------------
-// function getCode() {
-//     let codecontent = document.getElementsByClassName('CodeMirror-line');
-//     let num = codecontent.length;
-//     code = [];
-//     for (i = 0; i < num; i++) {
-//         let lineText = codecontent[i].innerText;
-//         if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
-//         lineText = lineText + '\n';
-//         code += lineText;
-//         console.log(code);
-//     }
-//     return code;
-// }
-//--------------------------------------------------------------------------
-async function newEditor() {
-    fetch('/editor', { method: 'POST' })
-        .then(checkStatus)
-        .then(async json => {
-            const id = json.id;
-            //get editor/:id API
-            window.location.href = `/editor/${id}`;
+// -----------------------------Runnig Code--------------------------------------------
+function testcode() {
+    document.getElementById('y-connect-btn').dispatchEvent(new Event('click'));
+    setTimeout(()=>{
+    // const code = document.getElementsByClassName('CodeMirror cm-s-monokai')[0].value;
+    // let code=editor.value;
+    // console.log(code);
+    let code = getCode();
+    console.log(code);
+
+    fetch('/editor/runcode', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        body: code
+    }).then(checkStatus)
+        .then(json => {
+            const showresult = document.getElementById('consoleResult');
+            showresult.innerHTML = null;
+            const outputdiv = document.createElement('div');
+            outputdiv.setAttribute('class', 'row output');
+            // // outputdiv.innerHTML=null;
+            // // const output = document.getElementsByClassName('output');
+            // // output[0].innerHTML = json['Result'];
+            if (json['Result'] === '') {
+                outputdiv.innerHTML = 'Nothing To Show';
+            }
+            else {
+                outputdiv.innerHTML = json['Result'];
+            }
+            showresult.appendChild(outputdiv)
+            // // const runningresult = json;
+            // console.log(json['Result']);
+            // // localStorage.setItem('access_token', token);
+            // // window.location.href = "./index.html";
+            document.getElementById('y-connect-btn').dispatchEvent(new Event('click'));
+
+        }).catch(error => {
+            const output = document.getElementsByClassName('output');
+            output[0].innerHTML = error.message;
+            // // const runningresult = json;
+            // console.log(json);
+            console.log('Fetch Error: ', error.message);
         })
-        .catch(error => {
-            console.log('Fetch Error: ', error);
-        })
+    },300);
 }
-// // -----------------------------Set ChatRoom Bottom--------------------------------------------
+// -------------------------------SaveEditor------------------------------------------
+async function saveEditor() {
+    document.getElementById('y-connect-btn').dispatchEvent(new Event('click'));
+    setTimeout(async ()=>{const code = getCode();
+    // const token = localStorage.getItem('access_token');
+    // const currentHTML = document.documentElement.outerHTML;
+    const editorURL = document.location.href;
+    const title = document.getElementById('filename').value;
+    console.log(title);
+    const token = localStorage.getItem('access_token');
+    console.log(token);
+    document.getElementById('y-connect-btn').dispatchEvent(new Event('click'));
+    if (token) {
+        const chkuser = await fetch(`${host}/user/profile`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const chkuserres = await checkStatus(chkuser);
+        console.log(chkuserres);
+        const userID = chkuserres.data.id;
+        const pilecontent = {
+            'user': userID,
+            'code': code,
+            'filename': title,
+            'fileURL': editorURL,
+        };
+        console.log(pilecontent);
+        await fetch('/editor/saveEditor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pilecontent)
+        })
+        swal({
+            title: "Editor Saved",
+            icon: "success",
+        })
+        // alert('Editor Saved')
+    } else {
+        swal({
+            title: "Please Sign In First",
+            icon: "error",
+        })
+        // alert('Please Sign In First')
+    }},300)
+}
+// -----------------------------Get Code--------------------------------------------
+function getCode() {
+    let codecontent = document.getElementsByClassName('CodeMirror-line');
+    let num = codecontent.length;
+    let code = '';
+    if (num != 0) {
+        for (i = 0; i < num; i++) {
+            let lineText = codecontent[i].innerText;
+            let endpoint = lineText[Number(lineText.length - 1)];
+            let chkconsole = lineText
+            // console.log(endpoint);
+            if (lineText.charCodeAt(0) === 8203 && lineText.length == 1) { continue; }
+            // if (endpoint != ';') {
+            lineText = lineText + '\n';
+            // console.log(lineText);
+            // }
+            code += lineText;
+            console.log(code);
+        }
+    }
+    else {
+        code = '';
+    }
+    console.log(code);
+    return code;
+}
+
+// -----------------------------Set ChatRoom Bottom--------------------------------------------
 $(function () {
     var INDEX = 0;
     $("#chat-circle").click(function () {
@@ -109,7 +169,7 @@ $(function () {
     })
 
 })
- // -----------------------------Set Copy URL Bottom--------------------------------------------
+// -----------------------------Set Copy URL Bottom--------------------------------------------
 var $temp = $("<input>");
 var $url = $(location).attr('href');
 $('.clipboard').on('click', function() {
@@ -119,12 +179,3 @@ $('.clipboard').on('click', function() {
   $temp.remove();
   $(".copytext").text("URL copied!");
 })
-// -------------------------------------------------------------------------
-function signout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('username');
-    window.location.reload();
-    // loadCODE();
-    // window.location.href = "../index.html"
-}
-

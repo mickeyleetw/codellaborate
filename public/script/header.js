@@ -1,17 +1,17 @@
-// alert('QQ');
-let urlcurrent = (new URL(document.location))
-console.log(urlcurrent)
+chkLogin();
 document.getElementById('neweditor').addEventListener('click', newEditor);
-document.getElementById('createneweditor').addEventListener('click', newEditor);
 document.getElementById('logout').addEventListener('click',signout)
-chklogin();
-// FetchDetails(id, rednerDetails);
-
+//--------------------------------------------------------------------------
+//     fetch('./partials/footer.html')
+//     .then(res => res.text())
+//     .then(html =>
+//         document.getElementById('pagefooter').innerHTML = html
+//     ).then(chkLogin())
+//     .catch(err => console.log(err));
 //--------------------------------------------------------------------------
 function checkStatus(response) {
     if (response.ok) {
         return Promise.resolve(response.json());
-        // console.log(response);
     } else {
         return Promise.reject(new Error(response.statusText));
     }
@@ -22,7 +22,6 @@ async function newEditor() {
         .then(checkStatus)
         .then(async json => {
             const id = json.id;
-            //get editor/:id API
             window.location.href = `/editor/${id}`;
         })
         .catch(error => {
@@ -30,7 +29,7 @@ async function newEditor() {
         })
 }
 //--------------------------------------------------------------------------
-async function chklogin() {
+async function chkLogin() {
     const token = localStorage.getItem('access_token');
     if (token) {
         const resFromProfile = await fetch('/user/profile', {
@@ -56,3 +55,4 @@ function signout() {
     localStorage.removeItem('username');
     window.location.href = "./index.html"
 }
+// -------------------------------------------------------------------------

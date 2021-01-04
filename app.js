@@ -6,18 +6,17 @@ const io = require('socket.io')(http);
 const fs = require('fs');
 const bodyParser = require('body-parser'); 
 const fetch = require('node-fetch');
-const functions = require('./util/functions');
 const ejs = require('ejs');
 
 const socketListener=require('./server/socket/socket_manager.js')
 socketListener.socketListener(io)
-// io.on('connection', socketListener.socketListener);
 
-functions.connectDB();
+const mysql = require('./server/model/mysqlcon.js');
+mysql.connectDB();
 
-const editorRoutes=require("./server/routes/editorApi");
-const usergRoutes=require("./server/routes/userApi");
-const admingRoutes=require("./server/routes/admin");
+const editorRoutes=require("./server/routes/editor_route");
+const usergRoutes=require("./server/routes/user_route");
+const admingRoutes=require("./server/routes/admin_route");
 
 // Setup View Engine
 app.set('views', './public/views');
