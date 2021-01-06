@@ -5,7 +5,7 @@ const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PW,
-    database: 'jsonline'
+    database: process.env.DB_DATABASE
 })
 
 function connectDB() {
@@ -43,8 +43,23 @@ function sqlquery(str, sqlObj) {
     });
 }
 //--------------------------------------------------------------------------
+function twoSum(nums, target) {
+	let tables = {};
+	for (let i =0; i < nums.length; i++) {
+		let tmp = nums[i];
+		if (tables[target - tmp]>=0) {
+			return [tables[target - tmp], i]
+		}
+		else {
+			tables[tmp] = i;
+		}
+    }
+    throw new Error('Indices not found')
+};
+//--------------------------------------------------------------------------
 module.exports = {
     connectDB,
     sqlquery,
+    twoSum,
     db
 };

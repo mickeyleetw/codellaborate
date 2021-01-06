@@ -62,12 +62,8 @@ const saveEditor = async (req, res) => {
         'fileID': `${editorID}`
     };
 
-    // const chkfileID = 'SELECT userID,fileID FROM userFile where fileID=?;'
-    // let searchresult = await functions.sqlquery(chkfileID, editorID);
     let searchresult= await selectFromtable(['userID','fileID'],'userFile','fileID',editorID);
     if (searchresult.length != 0) {
-        // const sqluserPile = `UPDATE userFile SET title=?,saveTime = ?, code=? where fileID = ?`;
-        // await functions.sqlquery(sqluserPile, [title, currentTime, code, editorID]);
         await updateTable('userFile','title=?,saveTime = ?, code=?','fileID',[title, currentTime, code, editorID]);
         const result = searchresult.find(x => x.userID == userID);
         if (result == undefined) {
@@ -84,8 +80,6 @@ const userEditor = async (req, res) => {
     const editorID = req.body.editorID;
 
     let searchresult =await selectFromtable('*','userFile','fileID',editorID)
-    // const chkfileExist = 'SELECT * FROM userFile where fileID=?;'
-    // let searchresult = await functions.sqlquery(chkfileExist, editorID);
     console.log(searchresult)
     if (searchresult.length != 0) {
         const code = searchresult[0].code;
@@ -96,7 +90,6 @@ const userEditor = async (req, res) => {
             "title": title
         };
         return res.json(returnArr);
-        // return res.redirect(`./pile/${editorID}.html`);
     }
     else {
         const returnArr = {

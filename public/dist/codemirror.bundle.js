@@ -137,46 +137,9 @@ window.addEventListener('load', () => {
       console.log()
       return rgb;
   };
-    // var letters = '0123456789ABCDEF';
-    // var color = '#';
-    // for (var i = 0; i < 6; i++ ) {
-    //     color += letters[Math.floor(Math.random() * 16)];
-    // }
-    // localStorage.setItem('color',color);
-    // console.log(color);
-    // return color;
-  // };
 
-
-  
-// var getRandomColor = function() {
-// 	return '#' +
-// 		(function(color) {
-// 			return(color += '5678956789defdef' [Math.floor(Math.random() * 16)]) &&
-// 				(color.length == 6) ? color : arguments.callee(color);
-// 		})('');
-// }
-// 
-  
-
-//   function getUsername(){
-//     let name=(Math.random().toString(36).substr(2, 7)).toString();
-//     let username='';
-//     let token=localStorage.getItem('access_token')
-//     if (token) {
-//       username = localStorage.getItem('username');
-//     } else {
-//       username = name;
-//       localStorage.setItem('username',username);
-//     }
-//     console.log(username)
-//     return username;
-// };
 let username=localStorage.getItem('username')
 
-
-  // let room=(Math.random().toString(36).substr(2, 3) + Date.now().toString(36).substr(4, 3))
-  // console.log(room);
   const ydoc = new yjs__WEBPACK_IMPORTED_MODULE_1__["Doc"]()
   const provider = new y_websocket__WEBPACK_IMPORTED_MODULE_2__["WebsocketProvider"](
     'wss://demos.yjs.dev',
@@ -185,14 +148,9 @@ let username=localStorage.getItem('username')
   )
   const yText = ydoc.getText('codemirror')
   console.log(yText);
-  // const insertposition = document.getElementById('y-codemirror');
-  // const editorContainer = document.createElement('textarea')
-  // const editorContainer = document.createElement('textarea')
-  // editorContainer.setAttribute('id', 'editor')
-  // insertposition.appendChild(editorContainer)
-  // document.body.insertBefore(editorContainer, null)
 
-  // const editor = CodeMirror(editorContainer, {
+
+
   let editor = codemirror__WEBPACK_IMPORTED_MODULE_0___default.a.fromTextArea(document.getElementById('editor'), {
     mode: 'javascript',
     lineNumbers: true,

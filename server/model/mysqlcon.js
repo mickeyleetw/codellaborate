@@ -5,7 +5,7 @@ const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PW,
-    database: 'jsonline'
+    database: process.env.DB_DATABASE
 })
 //--------------------------------------------------------------------------
 function connectDB() {
@@ -30,10 +30,8 @@ function connectDB() {
 }
 //--------------------------------------------------------------------------
 function sqlquery(str, sqlObj) {
-    //console.log(str);
     return new Promise((resolve, reject) => {
         db.query(str, sqlObj, (err, results) => {
-            // console.log(results);
             if (err) reject(err);
             else resolve(results);
         }

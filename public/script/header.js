@@ -2,13 +2,6 @@ chkLogin();
 document.getElementById('neweditor').addEventListener('click', newEditor);
 document.getElementById('logout').addEventListener('click',signout)
 //--------------------------------------------------------------------------
-//     fetch('./partials/footer.html')
-//     .then(res => res.text())
-//     .then(html =>
-//         document.getElementById('pagefooter').innerHTML = html
-//     ).then(chkLogin())
-//     .catch(err => console.log(err));
-//--------------------------------------------------------------------------
 function checkStatus(response) {
     if (response.ok) {
         return Promise.resolve(response.json());
@@ -39,8 +32,6 @@ async function chkLogin() {
             }
         });
         const jsonFromProfile = await checkStatus(resFromProfile);
-        // const user = jsonFromProfile.data;
-        // userProfile(user);
         let signin = document.getElementById('signin');
         signin.setAttribute("style", "display:none");
         let signout = document.getElementById('signout');

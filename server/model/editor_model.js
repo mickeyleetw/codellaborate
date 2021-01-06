@@ -71,11 +71,8 @@ function runChildProcess(childProcess, timeLimit, memoryLimit, file) {
 
 // -------------------------------------------------------------------------
 function getTime() {
-    // const timestamp = moment().format();
     const timestamp = Date.now();
     const currentTime = moment(timestamp).tz("Asia/Taipei").format('YYYY-MM-DD HH:mm:ss');
-    console.log('QQ' + timestamp)
-    console.log(currentTime);
     return currentTime;
 }
 // -------------------------------------------------------------------------

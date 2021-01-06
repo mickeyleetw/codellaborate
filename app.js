@@ -55,3 +55,4 @@ http.listen(port, () => {
     console.log(`Server on port ${port} is ready!`);
 })
 
+module.exports=app;
