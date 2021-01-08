@@ -4,19 +4,19 @@ const {dropAlltables,createAlltables,createDB} = require('../controller/admin_co
 // --------------------------------------------------------------------------
 // Create DB
 router.get('/createDB', (req, res) => {
-  createDB();
+  createDB(res);
 });
 
 // -------------------------------Drop Tables if Exits-----------------------
 
 router.get('/DropTables', (req, res) => {
-  dropAlltables();
+  dropAlltables(res);
 
 });
 // -------------------------------Create Tables------------------------------
 
 router.get('/createAllTables', (req, res) => {
-  createAlltables();
+  createAlltables(res);
 });
 
 // --------------------------------------------------------------------------

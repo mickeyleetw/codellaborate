@@ -1,16 +1,16 @@
 const { createTables,dropTables,createDatebase } = require('../model/admin_model.js');
 //--------------------------------------------------------------------------
-function createDB(){
+function createDB(res){
     createDatebase();
     res.send('Database created');
 }
 //--------------------------------------------------------------------------
-function createAlltables(){
+function createAlltables(res){
     createTables();
     res.send('All Tables created');
 }
 //--------------------------------------------------------------------------
-function dropAlltables(){
+function dropAlltables(res){
     dropTables();
     res.send('All Tables dropped');
 }

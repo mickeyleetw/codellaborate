@@ -20,10 +20,10 @@ const verifyEditor = async (req, res) => {
     let chkesult = await selectFromtable('*','editor','editorID',editorId);
     if (chkesult.length > 0) {
         res.render('neweditor');
-    } else {
+    } else 
         res.render('404')
     }
-}
+
 // -----------------------------Run Code------------------------------
 const runCode = async (req, res) => {
     let code = req.body;

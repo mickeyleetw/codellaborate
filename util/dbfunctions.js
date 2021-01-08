@@ -1,5 +1,6 @@
 // MySQL 
 const mysql = require('mysql');
+//--------------------------------------------------------------------------
 const db = mysql.createPool({
     connectionLimit: 10,
     host: process.env.DB_HOST,
@@ -7,7 +8,7 @@ const db = mysql.createPool({
     password: process.env.DB_PW,
     database: process.env.DB_DATABASE
 })
-
+//--------------------------------------------------------------------------
 function connectDB() {
     db.getConnection((err, connection) => {
         if (err) {

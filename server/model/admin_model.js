@@ -43,6 +43,14 @@ async function createTables() {
         )';
 
     await sqlquery(sql);
+
+    sql = 'CREATE TABLE IF NOT EXISTS `editorTest`(\
+        id int AUTO_INCREMENT,\
+        editorID VARCHAR(255) unique NOT NULL,\
+        PRIMARY KEY(id)\
+        )';
+
+    await sqlquery(sql);
 }
 //--------------------------------------------------------------------------
 function createDatebase() {
