@@ -56,6 +56,7 @@ Website Link: https://codellaborate.online
 - CodeMirror
 
 ## Structure
+![image](https://github.com/mickeyleetw/gitImg/blob/master/structure.png)
 
 ## Database design
 ![image](https://mickeyzone.s3.us-east-2.amazonaws.com/DB.PNG)
