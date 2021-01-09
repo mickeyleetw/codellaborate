@@ -65,6 +65,7 @@ Website Link: https://codellaborate.online
 - supporting multi users to a single online editor
 - a real-time chat-room service
 - saved editor for member  
+![image](https://github.com/mickeyleetw/gitImg/blob/master/demo.gif)
 
 ## Demo account
 - Account:demo@demo.com
