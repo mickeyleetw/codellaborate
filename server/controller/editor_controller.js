@@ -67,10 +67,10 @@ const saveEditor = async (req, res) => {
         await updateTable('userFile','title=?,saveTime = ?, code=?','fileID',[title, currentTime, code, editorID]);
         const result = searchresult.find(x => x.userID == userID);
         if (result == undefined) {
-            insertTableset('userfile',userEditor);
+            insertTableset('userFile',userEditor);
         }
     } else {
-        insertTableset('userfile',userEditor);
+        insertTableset('userFile',userEditor);
     }
 
     res.send('OK')
@@ -91,7 +91,7 @@ const userEditor = async (req, res) => {
         };
         return res.json(returnArr);
     }
-    else {
+    else {git 
         const returnArr = {
             "status": "Non-Exist",
             "code": null,
