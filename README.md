@@ -64,6 +64,9 @@ Website Link: https://codellaborate.online
 ## Features
 - online coding with instant running result
 - supporting multi users to a single online editor
+
+![image](https://github.com/mickeyleetw/gitImg/blob/master/demo.gif)
+
 - a real-time chat-room service
 - saved editor for member  
 
