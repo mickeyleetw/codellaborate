@@ -70,7 +70,7 @@ Website Link: https://codellaborate.online
 - a real-time chat-room service
 - saved editor for member  
 
-![image](https://github.com/mickeyleetw/gitImg/blob/master/demo.gif)
+![image](https://github.com/mickeyleetw/gitImg/blob/master/collaboratedemo.mp4)
 
 ## Demo account
 - Account:demo@demo.com
