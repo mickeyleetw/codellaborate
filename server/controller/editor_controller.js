@@ -91,7 +91,7 @@ const userEditor = async (req, res) => {
         };
         return res.json(returnArr);
     }
-    else {git 
+    else {
         const returnArr = {
             "status": "Non-Exist",
             "code": null,
