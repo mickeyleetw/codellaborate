@@ -5,7 +5,7 @@ Website Link: https://codellaborate.online
 ![image](https://github.com/mickeyleetw/gitImg/blob/main/index.gif)
 
 ## Table of content
-- Technologies
+- Technologies(#Technologies)
 - Structure
 - Database design
 - Features
