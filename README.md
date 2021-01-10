@@ -5,12 +5,12 @@ Website Link: https://codellaborate.online
 ![image](https://github.com/mickeyleetw/gitImg/blob/main/index.gif)
 
 ## Table of content
-- *[Technologies](#Technologies)
-- *[Structure](#Structure)
-- Database design
-- Features
-- Inspiration
-- Author
+- [Technologies](#Technologies)
+- [Structure](#Structure)
+- [Database design](#Database design)
+- [Features](#Features)
+- [Inspiration](#Inspiration)
+- [Author](#Author)
 
 ## Technologies
 ### Backend
