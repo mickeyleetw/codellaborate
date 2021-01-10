@@ -7,7 +7,7 @@ Website Link: https://codellaborate.online
 ## Table of content
 - [Technologies](#Technologies)
 - [Structure](#Structure)
-- [Database design](#Database design)
+- [Database design](#Database-design)
 - [Features](#Features)
 - [Inspiration](#Inspiration)
 - [Author](#Author)
